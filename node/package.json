@@ -1,0 +1,26 @@
+{
+	"name": "m2mIO",
+	"version": "0.0.1",
+	"description": "2lemetry m2mIO Platform Node.js SDK.",
+	"keywords": ["2lemetry", "m2mIO", "IOT", "Internet of Things", "MQTT", "0MQ", "ZMQ"],
+	"repository": "git://github.com/m2mIO/client-libraries.git",
+	"author": "Frank LoVecchio <frank@2lemetry.com> (http://2lemetry.com)",
+	"dependencies": {
+      "xml2js": "",
+      "long-stack-traces": "",
+      "underscore": "",
+      "restler": "",
+      "crypto":"",
+      "mqttjs":""
+	},
+	"optionalDependencies": {
+      "zmq":""
+	},
+	"main": "index.js",
+	"license": {
+      "type": "Hack the planet"
+	},
+	"engines": { 
+      "node": ">= 0.4.8" 
+	}
+}

@@ -125,8 +125,8 @@ public class IOMqttClient implements MqttCallback {
 		}
 	}
 
-	public void disconnect() {
-
+	public void disconnect() throws Exception {
+		mqttClient.disconnect();
 	}
 
 	public void connectionLost(Throwable arg0) {
