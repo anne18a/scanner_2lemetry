@@ -173,7 +173,7 @@ int main(int argc, char* argv[]) {
 	// if user specified provisioning flag then first
 	// provision device to user, then start sending sensor values
 	if ((argc > 1) && (strcmp(argv[1], "-p") == 0)) {
-		printf("prov\n");
+		printf("Sending provisioning message...\n");
 		char clientIDStr[100];
 		sprintf(clientIDStr, "%s-%s", M2MIO_DOMAIN, M2MIO_DEVICE_ID);
 		mqtt_init(&broker, clientIDStr);
