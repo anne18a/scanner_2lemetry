@@ -16,6 +16,8 @@ The example.c file includes code to provision a device on the m2m.io platform as
 
 At the top of example.c are some constant parameters which need to be updated.  The values to use pertain to your m2m.io portal account and can be found on the Account tab after logging in.  The portal can be found at http://apps.m2m.io.
 
-Usage:  This library will compile and run with gcc.  It can be built and ran as a test on a host Mac/PC/Linux machine.  Note that it is setup to use the Linux TCP/IP libraries.  On a different platform you will have to change the includes.  Using the -p flag when running will cause the provisioning message to be sent before publishing sensor values in a continous loop.  The provisioning only needs to be done once and can be skipped for subsequent runs of the program.
+Usage:  This library will compile and run with gcc.  It can be built and ran as a test on a host Mac/PC/Linux machine.  Note that it is setup to use the Linux TCP/IP libraries.  On a different platform you will have to change the includes.  For example, on Mac OS X, replace linux/tcp.h with netinet/tcp.h.
+
+Using the -p flag when running will cause the provisioning message to be sent before publishing sensor values in a continous loop.  The provisioning only needs to be done once and can be skipped for subsequent runs of the program.
 
 Note:  This client does not fully implement the MQTT 3.1 spec.  More specifically, QoS 2.  If a more complete C client is desired, please see the Paho C client: http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.c.git/.  The Paho C client will be a more difficult port to most embedded environments but will provide full functionality in a multi-threaded environment.
