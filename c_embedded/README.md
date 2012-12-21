@@ -16,7 +16,7 @@ The example.c file includes code to provision a device on the m2m.io platform as
 
 At the top of example.c are some constant parameters which need to be updated.  The values to use pertain to your m2m.io portal account and can be found on the Account tab after logging in.  The portal can be found at http://apps.m2m.io.
 
-Usage:  This library will compile and run with gcc.  It can be built and ran as a test on a host Mac/PC/Linux machine.  Note that it is setup to use the Linux TCP/IP libraries.  On a different platform you will have to change the includes.  For example, on Mac OS X, replace linux/tcp.h with netinet/tcp.h.
+Usage:  This library will compile and run with gcc.  It can be built and ran as a test on a host Mac/PC/Linux machine.  Note that it is setup to use the Linux TCP/IP libraries.  On a different platform you will have to change the includes.  For example, on Mac OS X, replace linux/tcp.h with netinet/tcp.h.  The library has been tested under cygwin on Windows.  A port to Winsock has not been done.
 
 Using the -p flag when running will cause the provisioning message to be sent before publishing sensor values in a continous loop.  The provisioning only needs to be done once and can be skipped for subsequent runs of the program.
 
