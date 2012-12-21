@@ -3,7 +3,7 @@ c-embedded
 
 A lightweight MQTT client example for embedded devices running C.  Forked from the menudoproblema/libemqtt library (https://github.com/menudoproblema/libemqtt.git).
 
-libemqtt was chosen as a base for this repository because of its relative ease of porting to various embedded environments / RTOSes.  libemqtt is single threaded which lends itself to an easier port to an embedded application / RTOS.
+libemqtt was chosen as a base for this repository because of its relative ease of porting to various embedded environments / RTOSes.  libemqtt is single threaded which lends itself to an easier port to an embedded application / RTOS.  If interested, see note at bottom of page for examples of other MQTT C libraries.
 
 Handling the interface to the TCP/IP library is the only porting required to get this library to work on a particular embedded platform.  The following functions in example.c will need to be ported:
 
@@ -16,7 +16,7 @@ The example.c file includes code to provision a device on the m2m.io platform as
 
 At the top of example.c are some constant parameters which need to be updated.  The values to use pertain to your m2m.io portal account and can be found on the Account tab after logging in.  The portal can be found at http://apps.m2m.io.
 
-Usage:  This library will compile and run with gcc.  It can be built and ran as a test on a host Mac/PC/Linux machine.  Note that it is setup to use the Linux TCP/IP libraries.  On a different platform you will have to change the includes.  For example, on Mac OS X, replace linux/tcp.h with netinet/tcp.h.  The library has been tested under cygwin on Windows.  A port to Winsock has not been done.
+Usage (on a host PC for testing):  This library will compile and run with gcc.  It can be built and ran as a test on a host Mac/PC/Linux machine.  It is currently setup to use the Linux TCP/IP libraries.  On a different platform you will have to change the includes.  For example, on Mac OS X, replace linux/tcp.h with netinet/tcp.h.  The library has been tested under cygwin on Windows.  A port to Winsock has not been done.
 
 Using the -p flag when running will cause the provisioning message to be sent before publishing sensor values in a continous loop.  The provisioning only needs to be done once and can be skipped for subsequent runs of the program.
 
