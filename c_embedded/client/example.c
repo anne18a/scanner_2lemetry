@@ -12,7 +12,7 @@ Includes provisioning message and sensor loop.
 #include <arpa/inet.h>
 #include <linux/tcp.h>
 
-// values below can be found by logging into the m2m.io portal (http://apps.m2m.io)
+// values below can be found by logging into the m2m.io portal (http://app.m2m.io)
 // Username:  your email address you used to create the account
 // Password:  MD5 hash of your password (32 character string)
 // Domain:  Randomly generated.  Can be found on Accounts tab in portal.
