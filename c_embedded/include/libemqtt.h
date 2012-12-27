@@ -29,9 +29,13 @@
 #define __LIBEMQTT_H__
 
 #include <stdint.h>
-
+/*
 #ifndef MQTT_CONF_USERNAME_LENGTH
 	#define MQTT_CONF_USERNAME_LENGTH 13 // Recommended by MQTT Specification (12 + '\0')
+#endif
+*/
+#ifndef MQTT_CONF_USERNAME_LENGTH
+	#define MQTT_CONF_USERNAME_LENGTH 50
 #endif
 /*
 #ifndef MQTT_CONF_PASSWORD_LENGTH
@@ -220,7 +224,7 @@ typedef struct {
 	void* socket_info;
 	int (*send)(void* socket_info, const void* buf, unsigned int count);
 	// Connection info
-	char clientid[24];
+	char clientid[50];
 	// Auth fields
 	char username[MQTT_CONF_USERNAME_LENGTH];
 	char password[MQTT_CONF_PASSWORD_LENGTH];
