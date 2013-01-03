@@ -219,7 +219,9 @@ int main(int argc, char* argv[]) {
 
 	// now connect using user/password, publish sensor values on
 	// appropriate topic (<domain>/<device type>/<device id>
-	mqtt_init(&broker, M2MIO_DEVICE_ID);
+	char clientIDStr[100];
+	sprintf(clientIDStr, "%s/%s", M2MIO_DEVICE_TYPE, M2MIO_DEVICE_ID);
+	mqtt_init(&broker, clientIDStr);
 	mqtt_init_auth(&broker, M2MIO_USERNAME, M2MIO_PASSWORD);
 	//init_socket(&broker, "q.m2m.io", 1883);
 	init_socket(&broker, M2MIO_BROKER_IP, M2MIO_BROKER_PORT);
