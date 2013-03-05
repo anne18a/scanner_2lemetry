@@ -141,7 +141,7 @@ int read_packet(int timeout)
 
 	while(total_bytes < 2) // Reading fixed header
 	{
-		if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE, 0)) <= 0)
+		if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE - total_bytes, 0)) <= 0)
 			return -1;
 		total_bytes += bytes_rcvd; // Keep tally of total bytes
 	}
@@ -150,7 +150,7 @@ int read_packet(int timeout)
 
 	while(total_bytes < packet_length) // Reading the packet
 	{
-		if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE, 0)) <= 0)
+		if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE - total_bytes, 0)) <= 0)
 			return -1;
 		total_bytes += bytes_rcvd; // Keep tally of total bytes
 	}
@@ -172,7 +172,7 @@ int main(int argc, char* argv[])
 
    mqtt_init(&broker, "sancho");
    mqtt_init_auth(&broker, "quijote", "rocinante");
-   init_socket(&broker, "192.168.10.40", 1883, keepalive);
+   init_socket(&broker, "107.22.188.194", 1883);
 
 	// >>>>> CONNECT
 	mqtt_connect(&broker);

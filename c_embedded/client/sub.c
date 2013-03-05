@@ -92,7 +92,7 @@ int read_packet(int timeout)
 	int total_bytes = 0, bytes_rcvd, packet_length;
 	memset(packet_buffer, 0, sizeof(packet_buffer));
 	
-	if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE, 0)) <= 0) {
+	if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE - total_bytes, 0)) <= 0) {
 		return -1;
 	}
 
@@ -111,7 +111,7 @@ int read_packet(int timeout)
 
 	while(total_bytes < packet_length) // Reading the packet
 	{
-		if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE, 0)) <= 0)
+		if((bytes_rcvd = recv(socket_id, (packet_buffer+total_bytes), RCVBUFSIZE - total_bytes, 0)) <= 0)
 			return -1;
 		total_bytes += bytes_rcvd; // Keep tally of total bytes
 	}
