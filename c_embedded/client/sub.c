@@ -148,7 +148,7 @@ int main()
 
 	mqtt_init(&broker, "client-id");
 	//mqtt_init_auth(&broker, "quijote", "rocinante");
-	init_socket(&broker, "107.22.188.194", 1883, keepalive);
+	init_socket(&broker, "<broker ip address>", 1883, keepalive);
 
 	// >>>>> CONNECT
 	mqtt_connect(&broker);
