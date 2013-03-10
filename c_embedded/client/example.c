@@ -10,7 +10,9 @@ Includes provisioning message and sensor loop.
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <linux/tcp.h>
+//#include <linux/tcp.h>
+#include <netinet/tcp.h>
+#include <netdb.h>
 
 // values below can be found by logging into the m2m.io portal (http://app.m2m.io)
 // Username:  your email address you used to create the account
@@ -29,13 +31,14 @@ Includes provisioning message and sensor loop.
 #define  M2MIO_DOMAIN     	"<insert domain from m2m.io portal here>"
 #define  M2MIO_DEVICE_TYPE	"things"
 #define  M2MIO_DEVICE_ID  	"device01"
-#define 	M2MIO_BROKER_IP	"107.22.188.194"
+#define M2MIO_BROKER_HOSTNAME "q.m2m.io"
 #define	M2MIO_BROKER_PORT	1883
 
 #define RCVBUFSIZE 1024
 uint8_t packet_buffer[RCVBUFSIZE];
 
 int socket_id;
+char broker_ip[100];  // holds return ip address from DNS lookup
 
 // scratch space to build message payloads
 char pubMsgStr[250];
@@ -44,6 +47,8 @@ char pubMsgStr[250];
 int sensorCount = 0;
 int tempReading[20] = { 45, 46, 49, 51, 45, 32, 35, 66, 43, 48,
 							   43, 41, 39, 31, 35, 34, 35, 56, 63, 38 };
+
+int hostname_to_ip(char * hostname , char* ip);
 
 int readTemperatureSensor(void) {
    int temp = tempReading[sensorCount];
@@ -164,11 +169,16 @@ int read_packet(int timeout) {
 	return packet_length;
 }
 
-
 int main(int argc, char* argv[]) {
 	int16_t packet_length;
 	//uint16_t msg_id, msg_id_rcv;
 	mqtt_broker_handle_t broker;
+
+	char host[30];  // temp space for hostname string
+	sprintf(host, M2MIO_BROKER_HOSTNAME);
+  char *hostname = host;
+  hostname_to_ip(hostname , broker_ip);
+  printf("\n%s resolved to %s\n" , hostname , broker_ip);
 
 	// if user specified provisioning flag then first
 	// provision device to user, then start sending sensor values
@@ -179,7 +189,7 @@ int main(int argc, char* argv[]) {
 		mqtt_init(&broker, clientIDStr);
 		mqtt_init_auth(&broker, "", "");
 	
-		init_socket(&broker, M2MIO_BROKER_IP, M2MIO_BROKER_PORT);
+		init_socket(&broker, broker_ip, M2MIO_BROKER_PORT);
 		mqtt_connect(&broker);
 
 		// look for CONNACK	
@@ -223,8 +233,7 @@ int main(int argc, char* argv[]) {
 	sprintf(clientIDStr, "%s/%s", M2MIO_DEVICE_TYPE, M2MIO_DEVICE_ID);
 	mqtt_init(&broker, clientIDStr);
 	mqtt_init_auth(&broker, M2MIO_USERNAME, M2MIO_PASSWORD);
-	//init_socket(&broker, "q.m2m.io", 1883);
-	init_socket(&broker, M2MIO_BROKER_IP, M2MIO_BROKER_PORT);
+	init_socket(&broker, broker_ip, M2MIO_BROKER_PORT);
 
 	mqtt_connect(&broker);
 	// wait for CONNACK	
@@ -268,3 +277,27 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
+int hostname_to_ip(char* hostname , char* ip)
+{
+	struct hostent *he;
+	struct in_addr **addr_list;
+	int i;
+		
+	if ( (he = gethostbyname( hostname ) ) == NULL) 
+	{
+		// get the host info
+		herror("gethostbyname");
+		return 1;
+	}
+
+	addr_list = (struct in_addr **) he->h_addr_list;
+	
+	for(i = 0; addr_list[i] != NULL; i++) 
+	{
+		//Return the first one;
+		strcpy(ip , inet_ntoa(*addr_list[i]) );
+		return 0;
+	}
+	
+	return 1;
+}
