@@ -10,8 +10,7 @@ Includes provisioning message and sensor loop.
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-//#include <linux/tcp.h>
-#include <netinet/tcp.h>
+#include <linux/tcp.h>
 #include <netdb.h>
 
 // values below can be found by logging into the m2m.io portal (http://app.m2m.io)
