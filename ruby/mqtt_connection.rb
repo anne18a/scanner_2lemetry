@@ -4,7 +4,7 @@ require 'rubygems'
 require 'mqtt' 		# Using the mqtt gem
 require 'digest'
 
-# Define some constants/
+# Define some constants.
 # Change username and password to values found in Your Credentials.
 CLIENT_ID = 'g3z559a6c1'
 TOKEN_HASH = Digest::MD5.hexdigest('ex2vcx0vfznu')
