@@ -2,6 +2,7 @@
 
 import paho.mqtt.client as mqtt     # Using the Paho MQTT client
 import hashlib
+import time
 
 # Define some constants.
 # Change the username and token to those found in Your Credentials.
@@ -39,6 +40,8 @@ def on_connect(client, userdata, rc):
 # The following are functions bound to callbacks.
 def on_disconnect(client, userdata, rc):
     print("Connection has been terminated.")
+
+    # This will automatically reconnect if connection is lost.
 
 def on_publish(client, userdata, mid):
     print("Message " + str(mid) + " has been published.")
