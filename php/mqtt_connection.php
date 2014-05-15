@@ -1,12 +1,18 @@
 <?php
 // PHP MQTT Connection Example
 
-// Define constants
+// Define some constants.
+// Change username and password to values in Your Credentials.
 $_CLIENT_ID = 'g3z559a6c1';
 $_TOKEN_HASH = md5('ex2vcx0vfznu');
+$_HOST = 'q.m2m.io';
+$_PORT = 1883;
+$_TOPIC = 'maaakihz/test-topic';
+$_PAYLOAD = '{"Hello":"World!"}';
+$_QOS = 0;
 
-// Using the PHP Mosquitto extension (https://github.com/mgdm/Mosquitto-PHP)
-$client = new Mosquitto\Client($_CLIENT_ID);
+// Using the PHP Mosquitto extension (https://github.com/mgdm/Mosquitto-PHP).
+$client = new Mosquitto\Client($_CLIENT_ID);	// Provide a Client ID to prevent a random ID from being generated.
 
 // Bind callbacks
 $client->onConnect('on_connect');
@@ -18,13 +24,13 @@ $client->onMessage('on_message');
 $client->setCredentials($_CLIENT_ID, $_TOKEN_HASH);
 
 // Connect to q.m2m.io:1883.
-$client->connect('q.m2m.io', 1883);
+$client->connect($_HOST, $_PORT);
 
 // Subscribe to a topic.
-$client->subscribe('maaakihz/test-topic', 0);
+$client->subscribe($_TOPIC, $_QOS);
 
 // Publish to a topic.
-$client->publish('maaakihz/test-topic', '{"encoding":"json", "from":"php"}');
+$client->publish($_TOPIC, $_PAYLOAD);
 
 // Loop forever to maintain a connection with the host.
 for(;;){

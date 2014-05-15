@@ -4,28 +4,38 @@ require 'rubygems'
 require 'mqtt' 		# Using the mqtt gem
 require 'digest'
 
+# Define some constants/
+# Change username and password to values found in Your Credentials.
+CLIENT_ID = 'g3z559a6c1'
+TOKEN_HASH = Digest::MD5.hexdigest('ex2vcx0vfznu')
+HOST = 'q.m2m.io'
+PORT = 1883
+TOPIC = 'maaakihz/test-topic'
+PAYLOAD = '{"Hello":"World!"}'
+
 # Connect to q.m2m.io using the following parameters.
 MQTT::Client.connect(
-	:remote_host => 'q.m2m.io',
-	:username => 'g3z559a6c1',
-	:client_id => 'g3z559a6c1',
-	:password => Digest::MD5.hexdigest('ex2vcx0vfznu')
+	:remote_host => HOST,
+	:remote_port => PORT,
+	:username => CLIENT_ID,
+	:password => TOKEN_HASH,
+	:client_id => CLIENT_ID 	# Provide a Client ID to prevent a random ID from being generated.
 	) do |client|
 	# Confirm that the connection has been made.
-	puts 'connected'
+	puts 'Connected to host.'
 
-	# The publishing has to be done in a separate thread, as the 
-	# subscription service locks up the current thread.
+	# The publishing has to be done in a separate thread, as 
+	# the subscription service locks up the current thread.
 	Thread.new do
 		# Publish a payload to a topic.
-		client.publish('maaakihz/test-topic', '{"encoding":"json", "language":"ruby"}')
+		client.publish(TOPIC, PAYLOAD)
 
 		# Display a notice that the message was published.
 		puts 'Published message.'
 	end
 
 	# This both subscribes to a topic and defines the callback function.
-	client.get('maaakihz/test-topic') do |topic, message|
+	client.get(TOPIC) do |topic, message|
 		# Display the received message's topic and payload.
 		puts "Received message on #{topic}: #{message}"
 	end

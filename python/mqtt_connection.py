@@ -2,28 +2,15 @@
 
 import paho.mqtt.client as mqtt     # Using the Paho MQTT client
 import hashlib
-import time
 
-# We're connecting to the q.m2m.io server.
-HOST = 'q.m2m.io'
-
-# If using SSL, use port 4483.  Otherwise, use port 1883.
-PORT = 1883
-
-# A keepalive of 30 seconds is recommended.
-KEEPALIVE = 30
-
+# Define some constants.
 # Change the username and token to those found in Your Credentials.
 USERNAME = 'g3z559a6c1'
-TOKEN = 'ex2vcx0vfznu'
-
-# Change the the topic to your project's values
+TOKEN_HASH = hashlib.md5('ex2vcx0vfznu').hexdigest()
+HOST = 'q.m2m.io'
+PORT = 1883
 TOPIC = 'maaakihz/test-topic'
-
-# This is a dummy payload to be sent.
-PAYLOAD = '{"elephants":12, "zebras":4, "zoo":"stinky"}'
-
-# The desired Quality of Service.
+PAYLOAD = '{"Hello":"World!"}'
 QOS = 0
 
 # Result codes and their explanations for connection failure debugging.
@@ -46,7 +33,7 @@ def on_connect(client, userdata, rc):
     else:
         print("Connection unsuccessful! (Result code " + str(rc) + ": " + RESULT_CODES[rc] + ")")
 
-        # Stop the loop from trying to connect again if unsuccessful
+        # Stop the loop from trying to connect again if unsuccessful.
         client.disconnect()
 
 # The following are functions bound to callbacks.
@@ -57,7 +44,7 @@ def on_publish(client, userdata, mid):
     print("Message " + str(mid) + " has been published.")
 
 def on_subscribe(client, userdata, mid, granted_qos):
-    print("Subscription confirmed. (QOS: " + str(granted_qos) + ")")
+    print("Subscription confirmed.")
 
 def on_unsubscribe(client, userdata, mid):
     print("Unsubscribe confirmed.")
@@ -73,12 +60,6 @@ def test_publish():
 def test_subscribe():
     print("Subscribing to " + TOPIC)
     client.subscribe(TOPIC, QOS)
-
-    # Bind on_message() to the on_message event
-    client.on_message = on_message
-
-# The q.m2m.io server accepts a pre-hashed token.
-TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 
 # Create client object -- use USERNAME as client ID to prevent
 # a random ID from being generated for each connection.
@@ -96,7 +77,7 @@ client.on_message = on_message
 client.username_pw_set(USERNAME, TOKEN_HASH)
 
 # Establish the connection.
-client.connect(HOST, PORT, KEEPALIVE)
+client.connect(HOST, PORT)
 
 # Maintain a connection with the server.
 client.loop_forever()
