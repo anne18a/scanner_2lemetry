@@ -2,9 +2,9 @@ Connecting to q.m2m.io in Ruby
 ==============================
 
 What this script requires:
-* Ruby
-* The [mqtt](https://rubygems.org/gems/mqtt) Ruby gem
-* A [ThingFabric](https://app.thingfabric.com/) account
+1. Ruby
+2. The [mqtt](https://rubygems.org/gems/mqtt) Ruby gem
+3. A [ThingFabric](https://app.thingfabric.com/) account
 
 To install the mqtt gem, open a terminal and run the following command:
 
