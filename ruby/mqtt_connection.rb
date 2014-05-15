@@ -1,7 +1,7 @@
 # Ruby MQTT Connection Example
 
 require 'rubygems'
-require 'mqtt' # Using the mqtt gem
+require 'mqtt' 		# Using the mqtt gem
 require 'digest'
 
 # Connect to q.m2m.io using the following parameters.

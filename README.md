@@ -1,7 +1,7 @@
-client-libraries
-================
+quickstart-examples
+===================
 
-Platform client libraries
+Examples showing how to connect, subscribe, and publish to m2m.io in common languages.
 
 Copyright © 2013 2lemetry, LLC
 
