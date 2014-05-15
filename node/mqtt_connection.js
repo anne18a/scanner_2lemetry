@@ -1,5 +1,6 @@
-// Load required packages (node, npm)
-var mqtt = require('mqtt'),
+// Javascript MQTT Connection Example
+
+var mqtt = require('mqtt'),	// Using the "mqtt" package
     md5 = require('md5');
 
 // Set object with these connection options

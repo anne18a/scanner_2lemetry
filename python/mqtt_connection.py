@@ -1,7 +1,6 @@
-# Andrew French - May 2014
-# Python connection example
+# Python MQTT Connection Example
 
-import paho.mqtt.client as mqtt
+import paho.mqtt.client as mqtt     # Using the Paho MQTT client
 import hashlib
 import time
 

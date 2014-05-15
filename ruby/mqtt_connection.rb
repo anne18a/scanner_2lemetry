@@ -1,3 +1,5 @@
+# Ruby MQTT Connection Example
+
 require 'rubygems'
 require 'mqtt' # Using the mqtt gem
 require 'digest'

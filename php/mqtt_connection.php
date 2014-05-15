@@ -1,4 +1,5 @@
 <?php
+// PHP MQTT Connection Example
 
 // Define constants
 $_CLIENT_ID = 'g3z559a6c1';
