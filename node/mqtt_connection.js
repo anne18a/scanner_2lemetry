@@ -1,12 +1,13 @@
 // Javascript MQTT Connection Example
 
 var mqtt = require('mqtt'),	// Using the "mqtt" package.
-    md5 = require('md5');
+    md5 = require('MD5');
 
 // Define some constants.
 // Change username and password to values found in Your Credentials.
 var CLIENT_ID = 'g3z559a6c1',
-	TOKEN_HASH = md5('ex2vcx0vfznu'),
+	TOKEN = 'ex2vcx0vfznu',
+	TOKEN_HASH = md5(TOKEN),
 	HOST = 'q.m2m.io',
 	PORT = 1883,
 	TOPIC = 'maaakihz/test-topic',

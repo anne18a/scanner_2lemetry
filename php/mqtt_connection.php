@@ -4,7 +4,8 @@
 // Define some constants.
 // Change username and password to values in Your Credentials.
 $_CLIENT_ID = 'g3z559a6c1';
-$_TOKEN_HASH = md5('ex2vcx0vfznu');
+$_TOKEN = 'ex2vcx0vfznu';
+$_TOKEN_HASH = md5($_TOKEN);
 $_HOST = 'q.m2m.io';
 $_PORT = 1883;
 $_TOPIC = 'maaakihz/test-topic';

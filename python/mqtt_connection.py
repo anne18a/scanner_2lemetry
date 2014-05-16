@@ -7,7 +7,8 @@ import time
 # Define some constants.
 # Change the username and token to those found in Your Credentials.
 USERNAME = 'g3z559a6c1'
-TOKEN_HASH = hashlib.md5('ex2vcx0vfznu').hexdigest()
+TOKEN = 'ex2vcx0vfznu'
+TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 HOST = 'q.m2m.io'
 PORT = 1883
 TOPIC = 'maaakihz/test-topic'

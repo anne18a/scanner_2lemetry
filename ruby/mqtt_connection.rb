@@ -7,7 +7,8 @@ require 'digest'
 # Define some constants.
 # Change username and password to values found in Your Credentials.
 CLIENT_ID = 'g3z559a6c1'
-TOKEN_HASH = Digest::MD5.hexdigest('ex2vcx0vfznu')
+TOKEN = 'ex2vcx0vfznu'
+TOKEN_HASH = Digest::MD5.hexdigest(TOKEN)
 HOST = 'q.m2m.io'
 PORT = 1883
 TOPIC = 'maaakihz/test-topic'
