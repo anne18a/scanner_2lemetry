@@ -11,11 +11,15 @@ What this script requires:
 
 To install the Mosquitto PHP Extension, open a terminal and run the following command:
 
-`pecl install Mosquitto-alpha`
+```
+$ pecl install Mosquitto-alpha
+```
 
 Once the client has been installed, clone the quickstart-examples Git repository to your machine by navigating to the directory you'd like to store the code in and executing the following command in your terminal:
 
-`git clone [PUBLIC REPO URL]`
+```
+$ git clone [PUBLIC REPO URL]
+```
 
 Alternatively, open a text editor and copy the code from mqtt_connection.php into it.  
 
@@ -29,8 +33,10 @@ Back in mqtt_connection.php, edit the variable `$_TOPIC` to match the topic you'
 
 Now, your script should be ready to go.  Head back to the terminal and enter the following:
 
-`cd path/to/quickstart-examples/php`
-`php mqtt_connection.php`
+```
+$ cd path/to/quickstart-examples/php
+$ php mqtt_connection.php
+```
 
 If all goes well, you'll see that the script has successfully connected to the host, published a message, and received the same message.  To confirm a working connection, head back to your [ThingFabric](https://app.thingfabric.com/) Stream menu.  Let's publish a message and see if it goes through to the script.
 

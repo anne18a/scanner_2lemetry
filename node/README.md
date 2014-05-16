@@ -11,11 +11,15 @@ What this script requires:
 
 To install the Node mqtt and MD5 packages, open a terminal and run the following command:
 
-`npm install mqtt MD5`
+```
+$ npm install mqtt MD5
+```
 
 Once the packages have been installed, clone the quickstart-examples Git repository to your machine by navigating to the directory you'd like to store the code in and executing the following command in your terminal:
 
-`git clone [PUBLIC REPO URL]`
+```
+$ git clone [PUBLIC REPO URL]
+```
 
 Alternatively, open a text editor and copy the code from mqtt_connection.js into it.  
 
@@ -29,8 +33,10 @@ Back in mqtt_connection.js, edit the variable `TOPIC` to match the topic you've 
 
 Now, your script should be ready to go.  Head back to the terminal and enter the following:
 
-`cd path/to/quickstart-examples/node`
-`node mqtt_connection.js`
+```
+$ cd path/to/quickstart-examples/node
+$ node mqtt_connection.js
+```
 
 If all goes well, you'll see that the script has successfully connected to the host, published a message, and received the same message.  To confirm a working connection, head back to your [ThingFabric](https://app.thingfabric.com/) Stream menu.  Let's publish a message and see if it goes through to the script.
 

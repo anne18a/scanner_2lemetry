@@ -44,8 +44,32 @@ function on_connect($rc, $message) {
 	echo 'Code: ' . $rc . ' (' . $message . ')' . PHP_EOL;
 }
 function on_disconnect() {
+	global $_HOST, $_PORT, $_CLIENT_ID;
+
 	// Display notice/confirmation of being disconnected.
 	echo 'Client disconnected.' . PHP_EOL;
+	echo 'Will attempt to reconnect in 5s.' . PHP_EOL;
+
+	sleep(5);
+
+	// Create a new $client object.
+	echo 'Trying to reconnect...' . PHP_EOL;
+
+	$client = new Mosquitto\Client($_CLIENT_ID);
+
+	$client->connect($_HOST, $_PORT);
+
+	// $client->loop();
+
+	// Bind callbacks
+	$client->onConnect('on_connect');
+	$client->onDisconnect('on_disconnect');
+	$client->onSubscribe('on_subscribe');
+	$client->onMessage('on_message');
+
+	for(;;){
+		$client->loop();
+	}
 }
 function on_subscribe() {
 	// Confirm that the subscription has been made.

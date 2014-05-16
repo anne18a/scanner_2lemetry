@@ -40,9 +40,12 @@ def on_connect(client, userdata, rc):
 
 # The following are functions bound to callbacks.
 def on_disconnect(client, userdata, rc):
-    print("Connection has been terminated.")
+    print("Connection has been lost.")
 
     # This will automatically reconnect if connection is lost.
+    print("Attempting to reconnect in 5s.")
+    time.sleep(5)    
+    client.connect(HOST, PORT)
 
 def on_publish(client, userdata, mid):
     print("Message " + str(mid) + " has been published.")

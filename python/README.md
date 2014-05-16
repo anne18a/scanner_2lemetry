@@ -10,11 +10,15 @@ What this script requires:
 
 To install the MQTT Client, open a terminal and run the following command:
 
-`pip install paho-mqtt`
+```
+$ pip install paho-mqtt
+```
 
 Once the client has been installed, clone the quickstart-examples Git repository to your machine by navigating to the directory you'd like to store the code in and executing the following command in your terminal:
 
-`git clone [PUBLIC REPO URL]`
+```
+$ git clone [PUBLIC REPO URL]
+```
 
 Alternatively, open a text editor and copy the code from mqtt_connection.py into it.  
 
@@ -28,8 +32,10 @@ Back in mqtt_connection.py, edit the variable `TOPIC` to match the topic you've 
 
 Now, your script should be ready to go.  Head back to the terminal and enter the following:
 
-`cd path/to/quickstart-examples/python`
-`python mqtt_connection.py`
+```
+$ cd path/to/quickstart-examples/python
+$ python mqtt_connection.py
+```
 
 If all goes well, you'll see that the script has successfully connected to the host, published a message, and subscribed to the topic.  To confirm a working connection, head back to your [ThingFabric](https://app.thingfabric.com/) Stream menu.  Let's publish a message and see if it goes through to the script.
 

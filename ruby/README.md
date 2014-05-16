@@ -10,11 +10,15 @@ What this script requires:
 
 To install the mqtt gem, open a terminal and run the following command:
 
-`gem install mqtt`
+```
+$ gem install mqtt
+```
 
 Once mqtt has been installed, clone the quickstart-examples Git repository to your machine by navigating to the directory you'd like to store the code in and executing the following command in your terminal:
 
-`git clone [PUBLIC REPO URL]`
+```
+$ git clone [PUBLIC REPO URL]
+```
 
 Alternatively, open a text editor and copy the code from mqtt_connection.rb into it.  
 
@@ -28,8 +32,10 @@ Back in mqtt_connection.rb, edit the variable `TOPIC` to match the topic you've 
 
 Now, your script should be ready to go.  Head back to the terminal and enter the following:
 
-`cd path/to/quickstart-examples/ruby`
-`ruby mqtt_connection.rb`
+```
+$ cd path/to/quickstart-examples/ruby
+$ ruby mqtt_connection.rb
+```
 
 If all goes well, you'll see that the script has successfully connected to the host, published a message, and received the same message.  To confirm a working connection, head back to your [ThingFabric](https://app.thingfabric.com/) Stream menu.  Let's publish a message and see if it goes through to the script.
 
