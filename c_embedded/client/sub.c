@@ -7,16 +7,38 @@
  *
  */
 
-#include <libemqtt.h>
+#include "../include/libemqtt.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <linux/tcp.h>
+
+/* #include <linux/tcp.h> */	/* <-- For Linux applications */
+#include <netinet/tcp.h>		/* <-- For OSX applications */
+
 #include <signal.h>
 
+// values below can be found by logging into the m2m.io portal (http://app.m2m.io)
+// Username:  your email address you used to create the account
+// Password:  MD5 hash of your password (32 character string)
+// Domain:  Randomly generated.  Can be found on Accounts tab in portal.
+// Device Type:  Can remain "things".  If this device is a commonly supported
+//               device on the m2m.io portal there may be a type to choose.
+//               For example, Arduino.
+// Device ID: A string uniquely identifying this device from your other
+//            devices.  Only needs to be unique to you, not across all users.
+//            Common examples include device's MAC address or serial number.
+//            Device-1, Device-2 are fine too.
+
+#define  M2MIO_USERNAME   		"g3z559a6c1"
+#define  M2MIO_PASSWORD   		"fe61771c6a61d59a3e6ea432521c3bf8"	/* pre-hashed (MD5) token */
+#define  M2MIO_DOMAIN     		"maaakihz"
+#define  M2MIO_DEVICE_TYPE		"test-topic"
+#define  M2MIO_DEVICE_ID  		"testing-device"
+#define  M2MIO_BROKER_HOSTNAME 	"q.m2m.io"
+#define	 M2MIO_BROKER_PORT		1883
 
 #define RCVBUFSIZE 1024
 uint8_t packet_buffer[RCVBUFSIZE];

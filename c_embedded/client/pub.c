@@ -26,9 +26,14 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <linux/tcp.h>
+
+/* #include <linux/tcp.h> */	/* <-- For Linux applications */
+#include <netinet/tcp.h>		/* <-- For OSX applications */
+
+#include <signal.h>
 
 
 #define RCVBUFSIZE 1024

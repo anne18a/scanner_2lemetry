@@ -10,7 +10,10 @@ Includes provisioning message and sensor loop.
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <linux/tcp.h>
+
+/* #include <linux/tcp.h> */	/* For Linux applications */
+#include <netinet/tcp.h>		/* For OSX applications */
+
 #include <netdb.h>
 
 // values below can be found by logging into the m2m.io portal (http://app.m2m.io)
@@ -26,10 +29,10 @@ Includes provisioning message and sensor loop.
 //            Device-1, Device-2 are fine too.
 
 #define  M2MIO_USERNAME   	"g3z559a6c1"
-#define  M2MIO_PASSWORD   	"fe61771c6a61d59a3e6ea432521c3bf8"
+#define  M2MIO_PASSWORD   	"fe61771c6a61d59a3e6ea432521c3bf8"	/* pre-hashed (MD5) token */
 #define  M2MIO_DOMAIN     	"maaakihz"
 #define  M2MIO_DEVICE_TYPE	"test-topic"
-#define  M2MIO_DEVICE_ID  	"g3z559a6c1"
+#define  M2MIO_DEVICE_ID  	"testing-device"
 #define  M2MIO_BROKER_HOSTNAME "q.m2m.io"
 #define	 M2MIO_BROKER_PORT	1883
 
