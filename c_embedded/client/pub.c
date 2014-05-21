@@ -22,7 +22,7 @@
  *
  */
 
-#include <libemqtt.h>
+#include "../include/libemqtt.h"
 
 #include <stdio.h>
 #include <string.h>
