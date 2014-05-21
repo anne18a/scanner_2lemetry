@@ -4,7 +4,7 @@ Example MQTT Client for Embedded Applications
 Includes provisioning message and sensor loop.
 ***/
 
-#include <libemqtt.h>
+#include "../include/libemqtt.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -25,13 +25,13 @@ Includes provisioning message and sensor loop.
 //            Common examples include device's MAC address or serial number.
 //            Device-1, Device-2 are fine too.
 
-#define  M2MIO_USERNAME   	"<insert username from m2m.io portal here>"
-#define  M2MIO_PASSWORD   	"<insert password from m2m.io portal here>"
-#define  M2MIO_DOMAIN     	"<insert domain from m2m.io portal here>"
-#define  M2MIO_DEVICE_TYPE	"things"
-#define  M2MIO_DEVICE_ID  	"device01"
-#define M2MIO_BROKER_HOSTNAME "q.m2m.io"
-#define	M2MIO_BROKER_PORT	1883
+#define  M2MIO_USERNAME   	"g3z559a6c1"
+#define  M2MIO_PASSWORD   	"fe61771c6a61d59a3e6ea432521c3bf8"
+#define  M2MIO_DOMAIN     	"maaakihz"
+#define  M2MIO_DEVICE_TYPE	"test-topic"
+#define  M2MIO_DEVICE_ID  	"g3z559a6c1"
+#define  M2MIO_BROKER_HOSTNAME "q.m2m.io"
+#define	 M2MIO_BROKER_PORT	1883
 
 #define RCVBUFSIZE 1024
 uint8_t packet_buffer[RCVBUFSIZE];
