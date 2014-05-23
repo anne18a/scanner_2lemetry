@@ -1,11 +1,11 @@
 Connecting to q.m2m.io in Python
 ================================
 
-What this script requires:
+What you'll need:
 
 - Python
 - The [Eclipse Paho MQTT Client](http://www.eclipse.org/paho) (for Python)
-- A [ThingFabric](https://app.thingfabric.com/) account
+- A free [ThingFabric](https://app.thingfabric.com/) account
 - [Git](http://git-scm.com/) (optional)
 
 To install the MQTT Client, open a terminal and run the following command:

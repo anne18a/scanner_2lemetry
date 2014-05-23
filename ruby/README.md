@@ -1,7 +1,7 @@
 Connecting to q.m2m.io in Ruby
 ==============================
 
-What this script requires:
+What you'll need:
 
 - Ruby
 - The [mqtt](https://rubygems.org/gems/mqtt) Ruby gem

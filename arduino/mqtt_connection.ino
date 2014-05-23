@@ -1,47 +1,62 @@
-/*
- Basic MQTT example with Authentication
- 
-  - connects to an MQTT server, providing username
-    and password
-  - publishes "hello world" to the topic "outTopic"
-  - subscribes to the topic "inTopic"
-*/
-
 #include <SPI.h>
+#include "PubSubClient.h"
 #include <Ethernet.h>
-#include <PubSubClient.h>
+ 
+#define MQTT_SERVER "q.m2m.io"
+#define TOPIC "maaakihz/test-topic"
+#define CLIENT_ID "g3z559a6c1"
+#define TOKEN_HASH "fe61771c6a61d59a3e6ea432521c3bf8"
+#define PAYLOAD "{\"Hello\":\"World!\"}"
+ 
+// MAC Address of Arduino Ethernet Sheild (on sticker on shield)
+byte MAC_ADDRESS[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+PubSubClient client;
 
-// Change username and password to values found in Your Credentials.
-char CLIENT_ID[] = /* Client ID */;
-char TOKEN_HASH[] = /* MD5-hashed token */;
-char HOST[] = "q.m2m.io";
-int PORT = 1883;
-char TOPIC[] = /* domain/topic */
-char PAYLOAD[] = "{\"Hello\":\"World\"}";
-
-
-// Update these with values suitable for your network.
-byte mac[]    = {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };  // MAC address
-byte server[] = { 0, 0, 0, 0 }; // IP
-byte ip[]     = { 0, 0, 0, 0 }; // IP
-
-void on_message(char* topic, byte* payload, unsigned int length) {
-  // Accept and handle the newly arrived message
-}
-
-EthernetClient ethClient;
-PubSubClient client(server, 1883, on_message, ethClient);
+char message_buff[100];
 
 void setup()
 {
-  Ethernet.begin(mac, ip);
-  if (client.connect(CLIENT_ID, CLIENT_ID, TOKEN_HASH)) {
-    client.subscribe(TOPIC);
-    client.publish(TOPIC, PAYLOAD);
+  // init serial link for debugging
+  Serial.begin(9600);
+
+  if (Ethernet.begin(MAC_ADDRESS) == 0)
+  {
+      Serial.println("Failed to configure Ethernet using DHCP");
+      return;
   }
+
+  client = PubSubClient(MQTT_SERVER, 1883, callback);
 }
 
 void loop()
 {
+  if (!client.connected())
+  {
+      // clientID, username, MD5-hashed token
+      client.connect(CLIENT_ID, CLIENT_ID, PASSWORD);
+      client.subscribe(TOPIC);
+      client.publish(TOPIC, PAYLOAD);
+  }
+
+  // MQTT client loop processing
   client.loop();
+}
+
+// handles message arrived on subscribed topic(s)
+void callback(char* topic, byte* payload, unsigned int length) {
+
+  int i = 0;
+
+  Serial.println("Message arrived:  topic: " + String(topic));
+  Serial.println("Length: " + String(length));
+
+  // create character buffer with ending null terminator (string)
+  for(i=0; i<length; i++) {
+    message_buff[i] = payload[i];
+  }
+  message_buff[i] = '';
+
+  String msgString = String(message_buff);
+
+  Serial.println("Payload: " + msgString);
 }

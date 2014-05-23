@@ -1,12 +1,12 @@
 Connecting to q.m2m.io in PHP
 =============================
 
-What this script requires:
+What you'll need:
 
 - PHP
 - [PECL](http://pecl.php.net)
 - The [Mosquitto PHP Extension](https://github.com/mgdm/Mosquitto-PHP)
-- A [ThingFabric](https://app.thingfabric.com/) account
+- A free [ThingFabric](https://app.thingfabric.com/) account
 - [Git](http://git-scm.com/) (optional)
 
 To install the Mosquitto PHP Extension, open a terminal and run the following command:

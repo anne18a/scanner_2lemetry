@@ -5,17 +5,19 @@ import time
 import paho.mqtt.client as mqtt
 import json
 import urllib2
+import hashlib
 
 ser = serial.Serial(port = "/dev/ttyAMA0", baudrate=9600)
 ser.close()
 
-user = # The client_id
-key = # The hashed token
+# Replace these values with those found under "Credentials" in your ThingFabric dashboard.
+CLIENT_ID = # Your client_id
+TOKEN = # Your token
+TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 pub_topic = "maaakihz/test-topic"
 sub_topic = "maaakihz/test-topic"
 mqtt_server = "q.m2m.io"
 mqtt_port = 1883
-mqtt_client = # The client_id again
 t_connect = 0
 size = 32
 
@@ -59,8 +61,8 @@ def message(clt, userdata, message):
 
 def lo():
 	global t_connect
-	client = mqtt.Client(mqtt_client)
-	client.username_pw_set(user, key)
+	client = mqtt.Client(CLIENT_ID)
+	client.username_pw_set(CLIENT_ID, TOKEN)
 	client.on_connect = connect
 	client.on_disconnect = reconnect
 	client.on_message = message
@@ -82,7 +84,7 @@ try:
 #	while checkConnection() == False:
 #		time.sleep(30)
 	lo()
-	
+
 except (KeyboardInterrupt):
 	print "Interrupt received"
 	close()

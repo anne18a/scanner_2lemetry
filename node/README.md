@@ -1,12 +1,12 @@
 Connecting to q.m2m.io in Node.js (Javascript)
 ==============================================
 
-What this script requires:
+What you'll need:
 
 - [Node.js](http://nodejs.org)
 - The [mqtt](https://www.npmjs.org/package/mqtt) package
 - The [MD5](https://www.npmjs.org/package/MD5) package
-- A [ThingFabric](https://app.thingfabric.com/) account
+- A free [ThingFabric](https://app.thingfabric.com/) account
 - [Git](http://git-scm.com/) (optional)
 
 To install the Node mqtt and MD5 packages, open a terminal and run the following command:
