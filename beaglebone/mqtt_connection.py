@@ -1,107 +1,90 @@
-# This sample is suppose to show what is possible to do with the beaglebone black and some sensors
-# 
-# Sensors are EZ3 Maxsonar ultrasonic sensor, 3 axis accelerometer ADXL345 and a led
-# 
-# Pin connection
-#
-# ADLX345		Beaglebone
-#
-# GND			P9_01
-# VCC			P9_03
-# CS			P9_03
-# SDA			P9_20
-# SCL			P9_19
-#
-# EZ3			Beaglebone
-# GND			P9_01
-# +5			P9_07
-# AN			P9_40
-#
-# LED			Beaglebone
-# GND			P8_02
-# VCC			P8_10
+# Python MQTT Connection Example
 
-import Adafruit_BBIO.GPIO as GPIO
-import Adafruit_BBIO.ADC as ADC
-import paho.mqtt.client as mqtt
-from Adafruit_I2C import Adafruit_I2C
+import paho.mqtt.client as mqtt     # Using the Paho MQTT client
 import hashlib
 import time
 
-GPIO.setup("P8_10", GPIO.OUT)
-ADC.setup()
+# Define some constants.
+# Change the username and token to those found in Your Credentials.
+USERNAME = 'g3z559a6c1'
+TOKEN = 'ex2vcx0vfznu'
+TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
+HOST = 'q.m2m.io'
+PORT = 1883
+TOPIC = 'maaakihz/test-topic'
+PAYLOAD = '{"Hello":"World!"}'
+QOS = 0
 
-# Replace these values with those found in your Credentials menu.
-CLIENT_ID = ""
-key = hashlib.md5("").hexdigest()
+# Result codes and their explanations for connection failure debugging.
+RESULT_CODES = {
+    0: 'Connection successful',
+    1: 'Incorrect protocol version',
+    2: 'Invalid client identifier',
+    3: 'Server unavailable',
+    4: 'Bad username or password',
+    5: 'Not authorized'
+}
 
-def si(us):
-	si = us - 256 if us > 127 else us
-	return si
+def on_connect(client, userdata, rc):
+    if rc == 0:
+        print("Connection successful! (Result code 0)")
 
-def accelVals():
-	accel_vals = i2c.readList(0x32, 6)
-	return [si(accel_vals[1])*256 + si(accel_vals[0]), si(accel_vals[3])*256 + si(accel_vals[2]), si(accel_vals[5])*256 + si(accel_vals[4])]
+        test_publish()
+        test_subscribe()
 
-def pub_msg(val, vals, led):
-	ret = "{\"dist\":" + str(val) + ", \"accel\": [\"x\":" + str(vals[0]) + ", \"y\":" + str(vals[1]) + ", \"z\":" + str(vals[2]) + "], \"led\": " + str(led) + "}"
-	return ret
+    else:
+        print("Connection unsuccessful! (Result code " + str(rc) + ": " + RESULT_CODES[rc] + ")")
 
-def close():
-	print "Disconnect"
-	client.disconnect()
+        # Stop the loop from trying to connect again if unsuccessful.
+        client.disconnect()
 
-try:
-	# create MQTT client
-	print "Create client"
-	client = mqtt.Client("beagle-" + CLIENT_ID + "-pub")
-	client.loop()
+# The following are functions bound to callbacks.
+def on_disconnect(client, userdata, rc):
+    print("Connection has been lost.")
 
-	# connect to 2lemetry platform
-	print "Connect"
-	client.connect("q.mq.tt", 1883, 60)
-	#client.loop()
+    # This will automatically reconnect if connection is lost.
+    print("Attempting to reconnect in 5s.")
+    time.sleep(5)    
+    client.connect(HOST, PORT)
 
-	# publish a message
-	print "Publish"
-	#pub_topic = CLIENT_ID + "/things/" + CLIENT_ID
-	pub_topic = "public/beagle/test"
+def on_publish(client, userdata, mid):
+    print("Message " + str(mid) + " has been published.")
 
-	# accelerometer initialization
-	i2c = Adafruit_I2C(0x53, 1, False)
-	i2c.write8(0x31, 0x01)
-	time.sleep(1)
-	i2c.write8(0x2D, 0x08)
-	time.sleep(1)
+def on_subscribe(client, userdata, mid, granted_qos):
+    print("Subscription confirmed.")
 
-	# led init
-	GPIO.output("P8_10", GPIO.LOW)
-	led = False
+def on_unsubscribe(client, userdata, mid):
+    print("Unsubscribe confirmed.")
 
-	while client.loop() == 0:
-		val = ADC.read("P9_40")
-		# ADC value converted to voltage
-		val *= 1.8
-		# manufacturer value, 1 inch = 0.00699 V
-		val /= 0.00699
-		# get accelerometer values
-		vals = accelVals()
-		# manage the led
-		if val < 20:
-			GPIO.output("P8_10", GPIO.HIGH)
-			led = True
-		else:
-			GPIO.output("P8_10", GPIO.LOW)
-			led = False
+def on_message(client, userdata, message):
+    print("Received message on topic " + str(message.topic) + " (QOS " + str(message.qos) + "): " + str(message.payload))
 
-		#print json formated message
-		msg = pub_msg(val, vals, led)
+# These functions test the publishing and subscription functionality.
+def test_publish():
+    print("Publishing to " + TOPIC + " (QOS " + str(QOS) + "): " + PAYLOAD)
+    client.publish(TOPIC, PAYLOAD, QOS)
 
-		print msg
-		client.publish(pub_topic, msg, 0)
-		time.sleep(0.5)
-		pass
+def test_subscribe():
+    print("Subscribing to " + TOPIC)
+    client.subscribe(TOPIC, QOS)
 
-except (KeyboardInterrupt):
-	print "Interrupt received"
-	close()
+# Create client object -- use USERNAME as client ID to prevent
+# a random ID from being generated for each connection.
+client = mqtt.Client(USERNAME)
+
+# Bind callbacks to the relevant functions.
+client.on_connect = on_connect
+client.on_disconnect = on_disconnect
+client.on_publish = on_publish
+client.on_subscribe = on_subscribe
+client.on_unsubscribe = on_unsubscribe
+client.on_message = on_message
+
+# Set client username and token information.
+client.username_pw_set(USERNAME, TOKEN_HASH)
+
+# Establish the connection.
+client.connect(HOST, PORT)
+
+# Maintain a connection with the server.
+client.loop_forever()

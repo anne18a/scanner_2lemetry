@@ -229,6 +229,3 @@ int PubSubClient::connected() {
    if (!rc) _client.stop();
    return rc;
 }
-
-
-
