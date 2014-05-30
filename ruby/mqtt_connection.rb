@@ -9,12 +9,12 @@ require 'digest'
 CLIENT_ID = 'g3z559a6c1'
 TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = Digest::MD5.hexdigest(TOKEN)
-HOST = 'q.m2m.io'
-PORT = 1883
+HOST = 'q.thingfabric.com'
+PORT = 8883
 TOPIC = 'maaakihz/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 
-# Connect to q.m2m.io using the following parameters.
+# Connect to q.thingfabric.com using the following parameters.
 MQTT::Client.connect(
 	:remote_host => HOST,
 	:remote_port => PORT,

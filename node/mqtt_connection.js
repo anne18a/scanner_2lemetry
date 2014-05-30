@@ -8,8 +8,8 @@ var mqtt = require('mqtt'),	// Using the "mqtt" package.
 var CLIENT_ID = 'g3z559a6c1',
 	TOKEN = 'ex2vcx0vfznu',
 	TOKEN_HASH = md5(TOKEN),
-	HOST = 'q.m2m.io',
-	PORT = 1883,
+	HOST = 'q.thingfabric.com',
+	PORT = 8883,
 	TOPIC = 'maaakihz/test-stuff/test-thing',
 	PAYLOAD = '{"Hello":"World!"}';
 

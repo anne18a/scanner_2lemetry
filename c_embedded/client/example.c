@@ -18,25 +18,25 @@ Includes provisioning message and sensor loop.
 
 #include <netdb.h>
 
-// values below can be found by logging into the m2m.io portal (http://app.m2m.io)
+// values below can be found by logging into the thingfabric.com portal (http://app.thingfabric.com)
 // Username:  your email address you used to create the account
 // Password:  MD5 hash of your password (32 character string)
 // Domain:  Randomly generated.  Can be found on Accounts tab in portal.
 // Device Type:  Can remain "things".  If this device is a commonly supported
-//               device on the m2m.io portal there may be a type to choose.
+//               device on the thingfabric.com portal there may be a type to choose.
 //               For example, Arduino.
 // Device ID: A string uniquely identifying this device from your other
 //            devices.  Only needs to be unique to you, not across all users.
 //            Common examples include device's MAC address or serial number.
 //            Device-1, Device-2 are fine too.
 
-#define  M2MIO_USERNAME   	"g3z559a6c1"
-#define  M2MIO_PASSWORD   	"fe61771c6a61d59a3e6ea432521c3bf8"	/* pre-hashed (MD5) token */
-#define  M2MIO_DOMAIN     	"maaakihz"			/* domain */
-#define  M2MIO_DEVICE_TYPE	"test-stuff"		/* topic */
-#define  M2MIO_DEVICE_ID  	"test-thing"		/* device */
-#define  M2MIO_BROKER_HOSTNAME "q.m2m.io"
-#define	 M2MIO_BROKER_PORT	1883
+#define  THINGFABRIC_USERNAME   	"g3z559a6c1"
+#define  THINGFABRIC_PASSWORD   	"fe61771c6a61d59a3e6ea432521c3bf8"	/* pre-hashed (MD5) token */
+#define  THINGFABRIC_DOMAIN     	"maaakihz"			/* domain */
+#define  THINGFABRIC_DEVICE_TYPE	"test-stuff"		/* topic */
+#define  THINGFABRIC_DEVICE_ID  	"test-thing"		/* device */
+#define  THINGFABRIC_BROKER_HOSTNAME "q.thingfabric.com"
+#define	 THINGFABRIC_BROKER_PORT	8883
 
 #define RCVBUFSIZE 1024
 uint8_t packet_buffer[RCVBUFSIZE];
@@ -179,7 +179,7 @@ int main(int argc, char* argv[]) {
 	mqtt_broker_handle_t broker;
 
 	char host[30];  // temp space for hostname string
-	sprintf(host, M2MIO_BROKER_HOSTNAME);
+	sprintf(host, THINGFABRIC_BROKER_HOSTNAME);
   char *hostname = host;
   hostname_to_ip(hostname , broker_ip);
   printf("\n%s resolved to %s\n" , hostname , broker_ip);
@@ -189,11 +189,11 @@ int main(int argc, char* argv[]) {
 	if ((argc > 1) && (strcmp(argv[1], "-p") == 0)) {
 		printf("Sending provisioning message...\n");
 		char clientIDStr[100];
-		sprintf(clientIDStr, "%s-%s", M2MIO_DOMAIN, M2MIO_DEVICE_ID);
+		sprintf(clientIDStr, "%s-%s", THINGFABRIC_DOMAIN, THINGFABRIC_DEVICE_ID);
 		mqtt_init(&broker, clientIDStr);
 		mqtt_init_auth(&broker, "", "");
 	
-		init_socket(&broker, broker_ip, M2MIO_BROKER_PORT);
+		init_socket(&broker, broker_ip, THINGFABRIC_BROKER_PORT);
 		mqtt_connect(&broker);
 
 		// look for CONNACK	
@@ -215,14 +215,14 @@ int main(int argc, char* argv[]) {
 
 		// build provisioning message payload string
 		initJsonMsg(pubMsgStr);
-		addStringValToMsg("type", M2MIO_DEVICE_TYPE, pubMsgStr);
-		addStringValToMsg("mac", M2MIO_DEVICE_ID, pubMsgStr);
+		addStringValToMsg("type", THINGFABRIC_DEVICE_TYPE, pubMsgStr);
+		addStringValToMsg("mac", THINGFABRIC_DEVICE_ID, pubMsgStr);
 		finishJsonMsg(pubMsgStr);
 		
 		// publish message
 		printf("Publish: %s\n", pubMsgStr);
 		char enrollTopic[100];
-		sprintf(enrollTopic, "public/enroll/%s", M2MIO_USERNAME);
+		sprintf(enrollTopic, "public/enroll/%s", THINGFABRIC_USERNAME);
 		mqtt_publish(&broker, enrollTopic, pubMsgStr, 0);
 
 		mqtt_disconnect(&broker);
@@ -234,10 +234,10 @@ int main(int argc, char* argv[]) {
 	// now connect using user/password, publish sensor values on
 	// appropriate topic (<domain>/<device type>/<device id>
 	char clientIDStr[100];
-	sprintf(clientIDStr, "%s/%s", M2MIO_DEVICE_TYPE, M2MIO_DEVICE_ID);
+	sprintf(clientIDStr, "%s/%s", THINGFABRIC_DEVICE_TYPE, THINGFABRIC_DEVICE_ID);
 	mqtt_init(&broker, clientIDStr);
-	mqtt_init_auth(&broker, M2MIO_USERNAME, M2MIO_PASSWORD);
-	init_socket(&broker, broker_ip, M2MIO_BROKER_PORT);
+	mqtt_init_auth(&broker, THINGFABRIC_USERNAME, THINGFABRIC_PASSWORD);
+	init_socket(&broker, broker_ip, THINGFABRIC_BROKER_PORT);
 
 	mqtt_connect(&broker);
 	// wait for CONNACK	
@@ -259,7 +259,7 @@ int main(int argc, char* argv[]) {
 
 
 	char pubTopic[100];
-	sprintf(pubTopic, "%s/%s/%s", M2MIO_DOMAIN, M2MIO_DEVICE_TYPE, M2MIO_DEVICE_ID);
+	sprintf(pubTopic, "%s/%s/%s", THINGFABRIC_DOMAIN, THINGFABRIC_DEVICE_TYPE, THINGFABRIC_DEVICE_ID);
 
 	printf("%s\n", pubTopic);
 	

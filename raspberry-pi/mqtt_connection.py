@@ -16,8 +16,8 @@ TOKEN = # Your token
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 pub_topic = "maaakihz/test-stuff/test-thing"
 sub_topic = "maaakihz/test-stuff/test-thing"
-mqtt_server = "q.m2m.io"
-mqtt_port = 1883
+mqtt_server = "q.thingfabric.com"
+mqtt_port = 8883
 t_connect = 0
 size = 32
 

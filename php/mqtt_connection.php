@@ -6,8 +6,8 @@
 $_CLIENT_ID = 'g3z559a6c1';
 $_TOKEN = 'ex2vcx0vfznu';
 $_TOKEN_HASH = md5($_TOKEN);
-$_HOST = 'q.m2m.io';
-$_PORT = 1883;
+$_HOST = 'q.thingfabric.com';
+$_PORT = 8883;
 $_TOPIC = 'maaakihz/test-stuff/test-thing';
 $_PAYLOAD = '{"Hello":"World!"}';
 $_QOS = 0;
@@ -24,7 +24,7 @@ $client->onMessage('on_message');
 // Set client credentials.
 $client->setCredentials($_CLIENT_ID, $_TOKEN_HASH);
 
-// Connect to q.m2m.io:1883.
+// Connect to q.thingfabric.com:8883.
 $client->connect($_HOST, $_PORT);
 
 // Subscribe to a topic.

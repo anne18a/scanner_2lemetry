@@ -2,12 +2,12 @@
 #include "PubSubClient.h"
 #include <Ethernet.h>
  
-#define MQTT_SERVER "q.m2m.io"
+#define MQTT_SERVER "q.thingfabric.com"
 #define TOPIC "maaakihz/test-stuff/test-thing"
 #define CLIENT_ID "g3z559a6c1"
 #define TOKEN_HASH "fe61771c6a61d59a3e6ea432521c3bf8"
 #define PAYLOAD "{\"Hello\":\"World!\"}"
- 
+
 // MAC Address of Arduino Ethernet Shield (on sticker on shield)
 byte MAC_ADDRESS[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 PubSubClient client;
@@ -25,7 +25,7 @@ void setup()
       return;
   }
 
-  client = PubSubClient(MQTT_SERVER, 1883, callback);
+  client = PubSubClient(MQTT_SERVER, 8883, callback);
 }
 
 void loop()
@@ -33,7 +33,8 @@ void loop()
   if (!client.connected())
   {
       // clientID, username, MD5-hashed token
-      client.connect(CLIENT_ID, CLIENT_ID, PASSWORD);
+      // Leave client_id field null so a random ID is generated
+      client.connect(NULL, CLIENT_ID, PASSWORD);
       client.subscribe(TOPIC);
       client.publish(TOPIC, PAYLOAD);
   }

@@ -9,8 +9,8 @@ import time
 USERNAME = 'g3z559a6c1'
 TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
-HOST = 'q.m2m.io'
-PORT = 1883
+HOST = 'q.thingfabric.com'
+PORT = 8883
 TOPIC = 'maaakihz/test-topic'
 PAYLOAD = '{"Hello":"World!"}'
 QOS = 0
