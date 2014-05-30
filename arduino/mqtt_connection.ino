@@ -8,7 +8,7 @@
 #define TOKEN_HASH "fe61771c6a61d59a3e6ea432521c3bf8"
 #define PAYLOAD "{\"Hello\":\"World!\"}"
  
-// MAC Address of Arduino Ethernet Sheild (on sticker on shield)
+// MAC Address of Arduino Ethernet Shield (on sticker on shield)
 byte MAC_ADDRESS[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 PubSubClient client;
 
