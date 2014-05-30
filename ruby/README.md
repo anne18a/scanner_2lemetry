@@ -17,7 +17,7 @@ $ gem install mqtt
 Once mqtt has been installed, clone the quickstart-examples Git repository to your machine by navigating to the directory you'd like to store the code in and executing the following command in your terminal:
 
 ```
-$ git clone [PUBLIC REPO URL]
+$ git clone https://github.com/m2mIO/quickstart-samples.git
 ```
 
 Alternatively, open a text editor and copy the code from mqtt_connection.rb into it.  
