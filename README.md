@@ -1,4 +1,4 @@
-quickstart-examples
+quickstart-samples
 ===================
 
 Examples showing how to connect, subscribe, and publish to m2m.io in common languages and on common platforms.  Detailed tutorials are available in each directory.
