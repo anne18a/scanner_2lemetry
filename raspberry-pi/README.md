@@ -1,3 +1,1 @@
-Connecting to q.m2m.io with a Raspberry Pi
-==========================================
-
+If you're unfamiliar with how to connect to ThingFabric with a Raspberry Pi, please read our Quick Start [here](https://2lemetry.atlassian.net/wiki/display/KB/Quick+Start:+Connecting+to+ThingFabric+with+a+Raspberry+Pi).
