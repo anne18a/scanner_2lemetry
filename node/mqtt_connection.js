@@ -10,7 +10,7 @@ var CLIENT_ID = 'g3z559a6c1',
 	TOKEN_HASH = md5(TOKEN),
 	HOST = 'q.m2m.io',
 	PORT = 1883,
-	TOPIC = 'maaakihz/test-topic',
+	TOPIC = 'maaakihz/test-stuff/test-thing',
 	PAYLOAD = '{"Hello":"World!"}';
 
 // Set object with these connection options.
@@ -18,8 +18,7 @@ var options = {
 	protocolVersion: 3,
 	username: CLIENT_ID, 
 	password: TOKEN_HASH,
-	keepalive: 30,
-	clientId: CLIENT_ID		// Provide a Client ID to prevent a random ID from being generated.
+	keepalive: 30
 }
 
 // By creating a client, a connection will automatically be established.

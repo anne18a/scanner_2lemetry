@@ -11,7 +11,7 @@ TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = Digest::MD5.hexdigest(TOKEN)
 HOST = 'q.m2m.io'
 PORT = 1883
-TOPIC = 'maaakihz/test-topic'
+TOPIC = 'maaakihz/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 
 # Connect to q.m2m.io using the following parameters.
@@ -19,8 +19,7 @@ MQTT::Client.connect(
 	:remote_host => HOST,
 	:remote_port => PORT,
 	:username => CLIENT_ID,
-	:password => TOKEN_HASH,
-	:client_id => CLIENT_ID 	# Provide a Client ID to prevent a random ID from being generated.
+	:password => TOKEN_HASH
 	) do |client|
 	# Confirm that the connection has been made.
 	puts 'Connected to host.'

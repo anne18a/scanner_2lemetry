@@ -11,7 +11,7 @@ TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 HOST = 'q.m2m.io'
 PORT = 1883
-TOPIC = 'maaakihz/test-topic'
+TOPIC = 'maaakihz/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 QOS = 0
 
@@ -68,9 +68,7 @@ def test_subscribe():
     print("Subscribing to " + TOPIC)
     client.subscribe(TOPIC, QOS)
 
-# Create client object -- use USERNAME as client ID to prevent
-# a random ID from being generated for each connection.
-client = mqtt.Client(USERNAME)
+client = mqtt.Client()
 
 # Bind callbacks to the relevant functions.
 client.on_connect = on_connect

@@ -8,12 +8,12 @@ $_TOKEN = 'ex2vcx0vfznu';
 $_TOKEN_HASH = md5($_TOKEN);
 $_HOST = 'q.m2m.io';
 $_PORT = 1883;
-$_TOPIC = 'maaakihz/test-topic';
+$_TOPIC = 'maaakihz/test-stuff/test-thing';
 $_PAYLOAD = '{"Hello":"World!"}';
 $_QOS = 0;
 
 // Using the PHP Mosquitto extension (https://github.com/mgdm/Mosquitto-PHP).
-$client = new Mosquitto\Client($_CLIENT_ID);	// Provide a Client ID to prevent a random ID from being generated.
+$client = new Mosquitto\Client();	// Provide a Client ID to prevent a random ID from being generated.
 
 // Bind callbacks
 $client->onConnect('on_connect');

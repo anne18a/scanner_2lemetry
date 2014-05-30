@@ -3,7 +3,7 @@
 #include <Ethernet.h>
  
 #define MQTT_SERVER "q.m2m.io"
-#define TOPIC "maaakihz/test-topic"
+#define TOPIC "maaakihz/test-stuff/test-thing"
 #define CLIENT_ID "g3z559a6c1"
 #define TOKEN_HASH "fe61771c6a61d59a3e6ea432521c3bf8"
 #define PAYLOAD "{\"Hello\":\"World!\"}"

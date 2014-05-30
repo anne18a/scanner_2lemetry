@@ -14,8 +14,8 @@ ser.close()
 CLIENT_ID = # Your client_id
 TOKEN = # Your token
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
-pub_topic = "maaakihz/test-topic"
-sub_topic = "maaakihz/test-topic"
+pub_topic = "maaakihz/test-stuff/test-thing"
+sub_topic = "maaakihz/test-stuff/test-thing"
 mqtt_server = "q.m2m.io"
 mqtt_port = 1883
 t_connect = 0
@@ -61,7 +61,7 @@ def message(clt, userdata, message):
 
 def lo():
 	global t_connect
-	client = mqtt.Client(CLIENT_ID)
+	client = mqtt.Client()
 	client.username_pw_set(CLIENT_ID, TOKEN)
 	client.on_connect = connect
 	client.on_disconnect = reconnect
