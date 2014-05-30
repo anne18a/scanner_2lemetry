@@ -1,7 +1,7 @@
 quickstart-samples
 ===================
 
-Examples showing how to connect, subscribe, and publish to m2m.io in common languages and on common platforms.  Detailed tutorials are available in each directory.
+Examples showing how to connect, subscribe, and publish to m2m.io in common languages and on common platforms.  Links to detailed Quick Starts are available in each directory.
 
 Copyright © 2013 2lemetry, LLC
 
