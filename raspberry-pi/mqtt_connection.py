@@ -1,90 +1,93 @@
-import serial
-import os
-import glob
-import time
-import paho.mqtt.client as mqtt
-import json
-import urllib2
+# Python MQTT Connection Example
+
+import paho.mqtt.client as mqtt     # Using the Paho MQTT client
+import ssl
 import hashlib
+import time
 
-ser = serial.Serial(port = "/dev/ttyAMA0", baudrate=9600)
-ser.close()
-
-# Replace these values with those found under "Credentials" in your ThingFabric dashboard.
-CLIENT_ID = # Your client_id
-TOKEN = # Your token
+# Define some constants.
+# Change the username and token to those found in Your Credentials.
+USERNAME = 'g3z559a6c1'
+TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
-pub_topic = "maaakihz/test-stuff/test-thing"
-sub_topic = "maaakihz/test-stuff/test-thing"
-mqtt_server = "q.thingfabric.com"
-mqtt_port = 8883
-t_connect = 0
-size = 32
+HOST = 'q.thingfabric.com'
+PORT = 1883     # Use port 8883 if you're licensed for SSL
+TOPIC = 'maaakihz/test-stuff/test-thing'
+PAYLOAD = '{"Hello":"World!"}'
+QOS = 0
+CERT_FILE = '/usr/local/etc/openssl/cert.pem'
 
-def close():
-	global ser
-	ser.close()
+# Result codes and their explanations for connection failure debugging.
+RESULT_CODES = {
+    0: 'Connection successful',
+    1: 'Incorrect protocol version',
+    2: 'Invalid client identifier',
+    3: 'Server unavailable',
+    4: 'Bad username or password',
+    5: 'Not authorized'
+}
 
-def checkConnection():
-	try:
-		urllib2.urlopen("http://74.125.225.192", timeout=1)
-		return True
-	except urllib2.URLError as err: pass
-	return False
+def on_connect(client, userdata, rc):
+    if rc == 0:
+        print("Connection successful! (Result code 0)")
 
-def reconnect(clt, userdata, rc):
-	global t_connect
-	print "Client disconnected"
-	
-#	while checkConnection() == False:
-#		time.sleep(30)
-	lo()
+        test_publish()
+        test_subscribe()
 
-def connect(clt, userdata, rc):
-	global t_connect
-	t_connect = 0
-	print "Client connected"
+    else:
+        print("Connection unsuccessful! (Result code " + str(rc) + ": " + RESULT_CODES[rc] + ")")
 
-def message(clt, userdata, message):
-	global ser
-	global size
-	data = json.loads(message.payload)
-	msg = data["Message"]
-	ll = len(msg)
-	ser.open()
-	if ser.isOpen():
-		for i in range(0,size):
-			ser.write(" ")
-		ser.write(msg)
-	size = 32 - ll + 32
-	ser.close()
+        # Stop the loop from trying to connect again if unsuccessful.
+        client.disconnect()
 
-def lo():
-	global t_connect
-	client = mqtt.Client()
-	client.username_pw_set(CLIENT_ID, TOKEN)
-	client.on_connect = connect
-	client.on_disconnect = reconnect
-	client.on_message = message
+# The following are functions bound to callbacks.
+def on_disconnect(client, userdata, rc):
+    print("Connection has been lost.")
 
-	while client.loop() > 0: 
-		client.connect(mqtt_server, mqtt_port, 60)
-	 	print "Loop: " + str(t_connect)
-	 	time.sleep(10*t_connect*t_connect)
-	 	t_connect += 1
+    # This will automatically reconnect if connection is lost.
+    print("Attempting to reconnect in 5s.")
+    time.sleep(5)    
+    client.connect(HOST, PORT)
 
-	client.publish(pub_topic, "I'm alive", 0)
-	client.subscribe(sub_topic)
-	
-	while client.loop() == 0:
-		time.sleep(5)
-		pass
+def on_publish(client, userdata, mid):
+    print("Message " + str(mid) + " has been published.")
 
-try:
-#	while checkConnection() == False:
-#		time.sleep(30)
-	lo()
+def on_subscribe(client, userdata, mid, granted_qos):
+    print("Subscription confirmed.")
 
-except (KeyboardInterrupt):
-	print "Interrupt received"
-	close()
+def on_unsubscribe(client, userdata, mid):
+    print("Unsubscribe confirmed.")
+
+def on_message(client, userdata, message):
+    print("Received message on topic " + str(message.topic) + " (QOS " + str(message.qos) + "): " + str(message.payload))
+
+# These functions test the publishing and subscription functionality.
+def test_publish():
+    print("Publishing to " + TOPIC + " (QOS " + str(QOS) + "): " + PAYLOAD)
+    client.publish(TOPIC, PAYLOAD, QOS)
+
+def test_subscribe():
+    print("Subscribing to " + TOPIC)
+    client.subscribe(TOPIC, QOS)
+
+client = mqtt.Client()
+
+# Bind callbacks to the relevant functions.
+client.on_connect = on_connect
+client.on_disconnect = on_disconnect
+client.on_publish = on_publish
+client.on_subscribe = on_subscribe
+client.on_unsubscribe = on_unsubscribe
+client.on_message = on_message
+
+# Set client username and token information.
+client.username_pw_set(USERNAME, TOKEN_HASH)
+
+# Set SSL parameters here if you're licensed
+# client.tls_set(CERT_FILE, certfile=None, keyfile=None, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLSv1, ciphers=None)
+
+# Establish the connection.
+client.connect(HOST, PORT)
+
+# Maintain a connection with the server.
+client.loop_forever()

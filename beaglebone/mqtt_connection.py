@@ -1,6 +1,7 @@
 # Python MQTT Connection Example
 
 import paho.mqtt.client as mqtt     # Using the Paho MQTT client
+import ssl
 import hashlib
 import time
 
@@ -10,10 +11,11 @@ USERNAME = 'g3z559a6c1'
 TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 HOST = 'q.thingfabric.com'
-PORT = 8883
-TOPIC = 'maaakihz/test-topic'
+PORT = 1883     # Use port 8883 if you're licensed for SSL
+TOPIC = 'maaakihz/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 QOS = 0
+CERT_FILE = '/usr/local/etc/openssl/cert.pem'
 
 # Result codes and their explanations for connection failure debugging.
 RESULT_CODES = {
@@ -68,9 +70,7 @@ def test_subscribe():
     print("Subscribing to " + TOPIC)
     client.subscribe(TOPIC, QOS)
 
-# Create client object -- use USERNAME as client ID to prevent
-# a random ID from being generated for each connection.
-client = mqtt.Client(USERNAME)
+client = mqtt.Client()
 
 # Bind callbacks to the relevant functions.
 client.on_connect = on_connect
@@ -82,6 +82,9 @@ client.on_message = on_message
 
 # Set client username and token information.
 client.username_pw_set(USERNAME, TOKEN_HASH)
+
+# Set SSL parameters here if you're licensed
+# client.tls_set(CERT_FILE, certfile=None, keyfile=None, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLSv1, ciphers=None)
 
 # Establish the connection.
 client.connect(HOST, PORT)

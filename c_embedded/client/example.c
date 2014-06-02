@@ -36,7 +36,7 @@ Includes provisioning message and sensor loop.
 #define  THINGFABRIC_DEVICE_TYPE	"test-stuff"		/* topic */
 #define  THINGFABRIC_DEVICE_ID  	"test-thing"		/* device */
 #define  THINGFABRIC_BROKER_HOSTNAME "q.thingfabric.com"
-#define	 THINGFABRIC_BROKER_PORT	8883
+#define	 THINGFABRIC_BROKER_PORT	1883	/* Use port 8883 for SSL */
 
 #define RCVBUFSIZE 1024
 uint8_t packet_buffer[RCVBUFSIZE];

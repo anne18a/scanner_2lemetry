@@ -9,7 +9,7 @@ var CLIENT_ID = 'g3z559a6c1',
 	TOKEN = 'ex2vcx0vfznu',
 	TOKEN_HASH = md5(TOKEN),
 	HOST = 'q.thingfabric.com',
-	PORT = 8883,
+	PORT = 1883,		// Use Port 8883 if you're licensed for SSL
 	TOPIC = 'maaakihz/test-stuff/test-thing',
 	PAYLOAD = '{"Hello":"World!"}';
 
@@ -18,7 +18,8 @@ var options = {
 	protocolVersion: 3,
 	username: CLIENT_ID, 
 	password: TOKEN_HASH,
-	keepalive: 30
+	keepalive: 30,
+	// useSSL: true		// Set useSSL to true if you're licensed for SSL
 }
 
 // By creating a client, a connection will automatically be established.

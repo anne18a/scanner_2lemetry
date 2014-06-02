@@ -3,6 +3,7 @@
 #include <Ethernet.h>
  
 #define MQTT_SERVER "q.thingfabric.com"
+#define PORT 1883   /* Use port 8883 for SSL */
 #define TOPIC "maaakihz/test-stuff/test-thing"
 #define CLIENT_ID "g3z559a6c1"
 #define TOKEN_HASH "fe61771c6a61d59a3e6ea432521c3bf8"
@@ -25,7 +26,7 @@ void setup()
       return;
   }
 
-  client = PubSubClient(MQTT_SERVER, 8883, callback);
+  client = PubSubClient(MQTT_SERVER, PORT, callback); 
 }
 
 void loop()

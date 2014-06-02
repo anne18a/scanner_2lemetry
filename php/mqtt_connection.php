@@ -7,7 +7,7 @@ $_CLIENT_ID = 'g3z559a6c1';
 $_TOKEN = 'ex2vcx0vfznu';
 $_TOKEN_HASH = md5($_TOKEN);
 $_HOST = 'q.thingfabric.com';
-$_PORT = 8883;
+$_PORT = 1883;		// Use port 8883 if you're licensed for SSL
 $_TOPIC = 'maaakihz/test-stuff/test-thing';
 $_PAYLOAD = '{"Hello":"World!"}';
 $_QOS = 0;
@@ -23,6 +23,9 @@ $client->onMessage('on_message');
 
 // Set client credentials.
 $client->setCredentials($_CLIENT_ID, $_TOKEN_HASH);
+
+// If you're using an SSL connection, configure the following:
+// $client->setTldCertificates(capath, certfile, keyfile, password);
 
 // Connect to q.thingfabric.com:8883.
 $client->connect($_HOST, $_PORT);

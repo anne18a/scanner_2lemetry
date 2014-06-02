@@ -10,7 +10,7 @@ CLIENT_ID = 'g3z559a6c1'
 TOKEN = 'ex2vcx0vfznu'
 TOKEN_HASH = Digest::MD5.hexdigest(TOKEN)
 HOST = 'q.thingfabric.com'
-PORT = 8883
+PORT = 1883		# If you're licenseed for SSL, use port 8883.
 TOPIC = 'maaakihz/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 
