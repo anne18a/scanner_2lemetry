@@ -12,9 +12,12 @@
 #define DOMAIN "q.thingfabric.com"
 #define USER "g3z559a6c1"               // Replace these values with those found in your ThingFabric Credentials.
 #define PASSWORD "fe61771c6a61d59a3e6ea432521c3bf8"
+#define TOPIC "maaakihz/test-stuff/test-thing"
+#define PAYLOAD "{\"Hello\":\"World!\"}"
 
 // MAC Address of Arduino Ethernet Sheild (on sticker on shield)
 byte MAC_ADDRESS[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x31, 0xAF };
+
 PubSubClient client;
 EthernetClient ethClient;
 char message_buff[100];
@@ -41,8 +44,8 @@ void loop()
   {
       // clientID, username, MD5 encoded password
       client.connect("arduino-mqtt", USER, PASSWORD);
-      client.publish("maaakihz/test-stuff/test-thing", "{\"Hello\":\"World!\"}");
-      client.subscribe("maaakihz/test-stuff/test-thing");
+      client.publish(TOPIC, PAYLOAD);
+      client.subscribe(TOPIC);
   }
  
   // MQTT client loop processing
