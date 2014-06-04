@@ -6,12 +6,12 @@ require 'digest'
 
 # Define some constants.
 # Change username and password to values found in Your Credentials.
-CLIENT_ID = 'g3z559a6c1'
-TOKEN = 'ex2vcx0vfznu'
+CLIENT_ID = ''
+TOKEN = ''
 TOKEN_HASH = Digest::MD5.hexdigest(TOKEN)
 HOST = 'q.thingfabric.com'
-PORT = 1883		# If you're licenseed for SSL, use port 8883.
-TOPIC = 'maaakihz/test-stuff/test-thing'
+PORT = 1883		# Use port 8883 for SSL.
+TOPIC = '[domain]/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 
 # Connect to q.thingfabric.com using the following parameters.

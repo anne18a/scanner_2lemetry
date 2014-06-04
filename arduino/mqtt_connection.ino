@@ -3,16 +3,13 @@
 #include <Ethernet.h>
  
 /*
- * LightSensorMqttDemo
- *
  * A simple ThingFabric platform demo for Arduino.
  */
  
 #define MQTT_SERVER "q.thingfabric.com"
-#define DOMAIN "q.thingfabric.com"
-#define USER "g3z559a6c1"               // Replace these values with those found in your ThingFabric Credentials.
-#define PASSWORD "fe61771c6a61d59a3e6ea432521c3bf8"
-#define TOPIC "maaakihz/test-stuff/test-thing"
+#define USER ""               // Replace these values with those found in your ThingFabric Credentials.
+#define PASSWORD ""
+#define TOPIC "[domain]/test-stuff/test-thing"
 #define PAYLOAD "{\"Hello\":\"World!\"}"
 
 // MAC Address of Arduino Ethernet Sheild (on sticker on shield)
@@ -37,7 +34,7 @@ void setup()
  
   client = PubSubClient(MQTT_SERVER, 1883, callback, ethClient);
 }
- 
+
 void loop()
 {
   if (!client.connected())

@@ -7,12 +7,12 @@ import time
 
 # Define some constants.
 # Change the username and token to those found in Your Credentials.
-USERNAME = 'g3z559a6c1'
-TOKEN = 'ex2vcx0vfznu'
+USERNAME = ''
+TOKEN = ''
 TOKEN_HASH = hashlib.md5(TOKEN).hexdigest()
 HOST = 'q.thingfabric.com'
 PORT = 1883     # Use port 8883 if you're licensed for SSL
-TOPIC = 'maaakihz/test-stuff/test-thing'
+TOPIC = '[domain]/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 QOS = 0
 CERT_FILE = '/usr/local/etc/openssl/cert.pem'

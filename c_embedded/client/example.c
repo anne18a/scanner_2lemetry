@@ -30,11 +30,11 @@ Includes provisioning message and sensor loop.
 //            Common examples include device's MAC address or serial number.
 //            Device-1, Device-2 are fine too.
 
-#define  THINGFABRIC_USERNAME   	"g3z559a6c1"
-#define  THINGFABRIC_PASSWORD   	"fe61771c6a61d59a3e6ea432521c3bf8"	/* pre-hashed (MD5) token */
-#define  THINGFABRIC_DOMAIN     	"maaakihz"			/* domain */
-#define  THINGFABRIC_DEVICE_TYPE	"test-stuff"		/* topic */
-#define  THINGFABRIC_DEVICE_ID  	"test-thing"		/* device */
+#define  THINGFABRIC_USERNAME   	""
+#define  THINGFABRIC_PASSWORD   	""	/* pre-hashed (MD5) token */
+#define  THINGFABRIC_DOMAIN     	"[domain]"			/* domain */
+#define  THINGFABRIC_DEVICE_TYPE	"[stuff]"		/* topic */
+#define  THINGFABRIC_DEVICE_ID  	"[thing]"		/* device */
 #define  THINGFABRIC_BROKER_HOSTNAME "q.thingfabric.com"
 #define	 THINGFABRIC_BROKER_PORT	1883	/* Use port 8883 for SSL */
 

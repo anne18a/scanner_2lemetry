@@ -3,17 +3,17 @@
 
 // Define some constants.
 // Change username and password to values in Your Credentials.
-$_CLIENT_ID = 'g3z559a6c1';
-$_TOKEN = 'ex2vcx0vfznu';
+$_CLIENT_ID = '';
+$_TOKEN = '';
 $_TOKEN_HASH = md5($_TOKEN);
 $_HOST = 'q.thingfabric.com';
-$_PORT = 1883;		// Use port 8883 if you're licensed for SSL
-$_TOPIC = 'maaakihz/test-stuff/test-thing';
+$_PORT = 1883;		// Use port 8883 for SSL
+$_TOPIC = '[domain]/test-stuff/test-thing';
 $_PAYLOAD = '{"Hello":"World!"}';
 $_QOS = 0;
 
 // Using the PHP Mosquitto extension (https://github.com/mgdm/Mosquitto-PHP).
-$client = new Mosquitto\Client();	// Provide a Client ID to prevent a random ID from being generated.
+$client = new Mosquitto\Client();
 
 // Bind callbacks
 $client->onConnect('on_connect');
@@ -24,17 +24,12 @@ $client->onMessage('on_message');
 // Set client credentials.
 $client->setCredentials($_CLIENT_ID, $_TOKEN_HASH);
 
-// If you're using an SSL connection, configure the following:
-// $client->setTldCertificates(capath, certfile, keyfile, password);
-
-// Connect to q.thingfabric.com:8883.
 $client->connect($_HOST, $_PORT);
 
 // Subscribe to a topic.
 $client->subscribe($_TOPIC, $_QOS);
 
-// Publish to a topic.
-$client->publish($_TOPIC, $_PAYLOAD);
+
 
 // Loop forever to maintain a connection with the host.
 for(;;){
@@ -43,8 +38,13 @@ for(;;){
 
 // Define callback functions.
 function on_connect($rc, $message) {
+	global $_TOPIC, $_PAYLOAD;
+
 	// Display the connection's result code and explanation message.
 	echo 'Code: ' . $rc . ' (' . $message . ')' . PHP_EOL;
+
+	// Publish to a topic.
+	$client->publish($_TOPIC, $_PAYLOAD);
 }
 function on_disconnect() {
 	global $_HOST, $_PORT, $_CLIENT_ID;
@@ -61,8 +61,6 @@ function on_disconnect() {
 	$client = new Mosquitto\Client($_CLIENT_ID);
 
 	$client->connect($_HOST, $_PORT);
-
-	// $client->loop();
 
 	// Bind callbacks
 	$client->onConnect('on_connect');
