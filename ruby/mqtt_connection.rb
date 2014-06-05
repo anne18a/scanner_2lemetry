@@ -6,7 +6,7 @@ require 'digest'
 
 # Define some constants.
 # Change username and password to values found in Your Credentials.
-CLIENT_ID = ''
+USERNAME = ''
 TOKEN = ''
 TOKEN_HASH = Digest::MD5.hexdigest(TOKEN)
 HOST = 'q.thingfabric.com'
@@ -18,7 +18,7 @@ PAYLOAD = '{"Hello":"World!"}'
 MQTT::Client.connect(
 	:remote_host => HOST,
 	:remote_port => PORT,
-	:username => CLIENT_ID,
+	:username => USERNAME,
 	:password => TOKEN_HASH
 	) do |client|
 	# Confirm that the connection has been made.

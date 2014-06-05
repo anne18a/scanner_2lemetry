@@ -15,7 +15,6 @@ PORT = 1883     # Use port 8883 if you're licensed for SSL
 TOPIC = '[domain]/test-stuff/test-thing'
 PAYLOAD = '{"Hello":"World!"}'
 QOS = 0
-CERT_FILE = '/usr/local/etc/openssl/cert.pem'
 
 # Result codes and their explanations for connection failure debugging.
 RESULT_CODES = {

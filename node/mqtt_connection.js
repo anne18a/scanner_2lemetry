@@ -5,7 +5,7 @@ var mqtt = require('mqtt'),	// Using the "mqtt" package.
 
 // Define some constants.
 // Change username and password to values found in Your Credentials.
-var CLIENT_ID = '',
+var USERNAME = '',
 	TOKEN = '',
 	TOKEN_HASH = md5(TOKEN),
 	HOST = 'q.thingfabric.com',
@@ -16,7 +16,7 @@ var CLIENT_ID = '',
 // Set object with these connection options.
 var options = {
 	protocolVersion: 3,
-	username: CLIENT_ID, 
+	username: USERNAME, 
 	password: TOKEN_HASH,
 	keepalive: 30,
 	// useSSL: true		// Set useSSL to true if you're licensed for SSL

@@ -3,7 +3,7 @@
 
 // Define some constants.
 // Change username and password to values in Your Credentials.
-$_CLIENT_ID = '';
+$_USERNAME = '';
 $_TOKEN = '';
 $_TOKEN_HASH = md5($_TOKEN);
 $_HOST = 'q.thingfabric.com';
@@ -22,7 +22,7 @@ $client->onSubscribe('on_subscribe');
 $client->onMessage('on_message');
 
 // Set client credentials.
-$client->setCredentials($_CLIENT_ID, $_TOKEN_HASH);
+$client->setCredentials($_USERNAME, $_TOKEN_HASH);
 
 $client->connect($_HOST, $_PORT);
 
@@ -47,7 +47,7 @@ function on_connect($rc, $message) {
 	$client->publish($_TOPIC, $_PAYLOAD);
 }
 function on_disconnect() {
-	global $_HOST, $_PORT, $_CLIENT_ID;
+	global $_HOST, $_PORT, $_USERNAME;
 
 	// Display notice/confirmation of being disconnected.
 	echo 'Client disconnected.' . PHP_EOL;
@@ -58,7 +58,7 @@ function on_disconnect() {
 	// Create a new $client object.
 	echo 'Trying to reconnect...' . PHP_EOL;
 
-	$client = new Mosquitto\Client($_CLIENT_ID);
+	$client = new Mosquitto\Client();
 
 	$client->connect($_HOST, $_PORT);
 
