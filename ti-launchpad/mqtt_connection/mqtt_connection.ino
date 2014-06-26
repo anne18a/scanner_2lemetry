@@ -9,7 +9,8 @@
 
 #define       SERVER            "q.thingfabric.com"
 #define       PORT              1883
-#define       CLIENT_ID         "TIlaunchpad"
+#define       CLIENT_ID         ""    // This can be left empty and a random ID will be generated.  
+                                      //You can add an ID if you'd like a human-readable way to identify the device.
 #define       USERNAME          "<Your ThingFabric Credentials Username>"
 #define       TOKEN             "<Your (pre-MD5 hashed) ThingFabric Credentials Token>"
 #define       MQTT_SUB_TOPIC    "[domain]/test-stuff/test-thing"
