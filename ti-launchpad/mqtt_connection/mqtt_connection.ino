@@ -10,8 +10,8 @@
 #define       SERVER            "q.thingfabric.com"
 #define       PORT              1883
 #define       CLIENT_ID         "TIlaunchpad"
-#define       USERNAME          "<Your ThingFabric >"
-#define       TOKEN             "<Your ThingFabric >"
+#define       USERNAME          "<Your ThingFabric Credentials Username>"
+#define       TOKEN             "<Your (pre-MD5 hashed) ThingFabric Credentials Token>"
 #define       MQTT_SUB_TOPIC    "[domain]/test-stuff/test-thing"
 #define       MQTT_PUB_TOPIC    "[domain]/test-stuff/test-thing"
 #define       MQTT_PUB_PAYLOAD  "{\"Hello\":\"World!\"}"
