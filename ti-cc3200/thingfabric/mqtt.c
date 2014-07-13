@@ -23,10 +23,10 @@
 // The "thing" name starts with this prefix with the MAC address
 // appended to the end. You could simplify this name if you like.
 
-#define TWOLEMETRY_SERVER "q.m2m.io"
-#define TWOLEMETRY_USERID "demo@ti.com"
-#define TWOLEMETRY_PASSWORD "4c7a34d25eff9121c49658dbceadf694"
-#define TWOLEMETRY_DOMAIN_STUFF "com.ti/msp430/"
+#define TWOLEMETRY_SERVER "q.thingfabric.com"
+#define TWOLEMETRY_USERID "<YOUR THINGFABRIC USERNAME>"
+#define TWOLEMETRY_PASSWORD "<YOUR (MD5-HASHED) THINGFABRIC TOKEN>"
+#define TWOLEMETRY_DOMAIN_STUFF "<YOUR DOMAIN>/cc3200/"
 #define THING_PREFIX	"MyName_"
 #define THING_PREFIX_SIZE	7
 
