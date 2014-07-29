@@ -4,21 +4,21 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := c:/ti/ccsv6/tools/compiler/arm_5.1.5
+CG_TOOL_ROOT := c:/ti/ccsv6/tools/compiler/arm_5.1.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./uart_if.obj" \
-"./tmp006drv.obj" \
-"./startup_ccs.obj" \
-"./smartconfig.obj" \
-"./pinmux.obj" \
-"./mqtt.obj" \
-"./main.obj" \
-"./i2c_if.obj" \
-"./gpio_if.obj" \
-"./device_status.obj" \
 "./bma222drv.obj" \
+"./device_status.obj" \
+"./gpio_if.obj" \
+"./i2c_if.obj" \
+"./main.obj" \
+"./mqtt.obj" \
+"./pinmux.obj" \
+"./smartconfig.obj" \
+"./startup_ccs.obj" \
+"./tmp006drv.obj" \
+"./uart_if.obj" \
 "../cc3200v1p32.cmd" \
 -l"libc.a" \
 -ldriverlib.a \
@@ -140,14 +140,14 @@ all: thingfabric.out
 thingfabric.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"c:/ti/ccsv6/tools/compiler/arm_5.1.5/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -g --define=ccs --define=SL_PLATFORM_MULTI_THREADED --define=USE_FREERTOS --define=cc3200 --display_error_number --diag_warning=225 --diag_wrap=off -z -m"thingfabric.map" --heap_size=0x2000 --stack_size=0x1000 -i"c:/ti/ccsv6/tools/compiler/arm_5.1.5/lib" -i"c:/ti/ccsv6/tools/compiler/arm_5.1.5/include" -i"C:/ti/CC3200SDK/cc3200-sdk/driverlib/ccs/Release" -i"C:/ti/CC3200SDK/cc3200-sdk/simplelink/ccs/OS" -i"C:/ti/CC3200SDK/cc3200-sdk/oslib/ccs/free_rtos" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="thingfabric_linkInfo.xml" --rom_model -o "thingfabric.out" $(ORDERED_OBJS)
+	"c:/ti/ccsv6/tools/compiler/arm_5.1.7/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -g --define=ccs --define=SL_PLATFORM_MULTI_THREADED --define=USE_FREERTOS --define=cc3200 --display_error_number --diag_warning=225 --diag_wrap=off -z -m"thingfabric.map" --heap_size=0x3000 --stack_size=0x1000 -i"c:/ti/ccsv6/tools/compiler/arm_5.1.7/lib" -i"c:/ti/ccsv6/tools/compiler/arm_5.1.7/include" -i"C:/ti/CC3200SDK/cc3200-sdk/driverlib/ccs/Release" -i"C:/ti/CC3200SDK/cc3200-sdk/simplelink/ccs/OS" -i"C:/ti/CC3200SDK/cc3200-sdk/oslib/ccs/free_rtos" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="thingfabric_linkInfo.xml" --rom_model -o "thingfabric.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
 
 thingfabric.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: ARM Hex Utility'
-	"c:/ti/ccsv6/tools/compiler/arm_5.1.5/bin/armhex"  -o "thingfabric.hex" $(EXE_OUTPUTS__QUOTED)
+	"c:/ti/ccsv6/tools/compiler/arm_5.1.7/bin/armhex"  -o "thingfabric.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
@@ -161,7 +161,7 @@ clean:
 
 post-build:
 	-@echo 'convert to bin files'
-	-"c:/ti/ccsv6/utils/tiobj2bin/tiobj2bin" "thingfabric.out" "thingfabric.bin" "c:/ti/ccsv6/tools/compiler/arm_5.1.5/bin/armofd" "c:/ti/ccsv6/tools/compiler/arm_5.1.5/bin/armhex" "c:/ti/ccsv6/utils/tiobj2bin/mkhex4bin"
+	-"c:/ti/ccsv6/utils/tiobj2bin/tiobj2bin" "thingfabric.out" "thingfabric.bin" "c:/ti/ccsv6/tools/compiler/arm_5.1.7/bin/armofd" "c:/ti/ccsv6/tools/compiler/arm_5.1.7/bin/armhex" "c:/ti/ccsv6/utils/tiobj2bin/mkhex4bin"
 	-@echo ' '
 
 .PHONY: all clean dependents

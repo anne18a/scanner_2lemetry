@@ -1,12 +1,12 @@
 # FIXED
 
 main.obj: C:/thingfabric/main.c
-main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdlib.h
-main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h
-main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h
+main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdlib.h
+main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h
+main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h
-main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h
+main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h
@@ -51,15 +51,15 @@ main.obj: C:/ti/CC3200SDK/cc3200-sdk/example/common/gpio_if.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/example/common/uart_if.h
 main.obj: C:/ti/CC3200SDK/cc3200-sdk/example/common/i2c_if.h
 main.obj: C:/thingfabric/mqtt.h
-main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdint.h
+main.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdint.h
 
 C:/thingfabric/main.c: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdlib.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdlib.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h: 
 C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h: 
@@ -104,4 +104,4 @@ C:/ti/CC3200SDK/cc3200-sdk/example/common/gpio_if.h:
 C:/ti/CC3200SDK/cc3200-sdk/example/common/uart_if.h: 
 C:/ti/CC3200SDK/cc3200-sdk/example/common/i2c_if.h: 
 C:/thingfabric/mqtt.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdint.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdint.h: 

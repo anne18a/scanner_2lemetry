@@ -1,10 +1,10 @@
 # FIXED
 
-device_status.obj: C:/Users/Andrew/Downloads/thingfabric/thingfabric/device_status.c
+device_status.obj: C:/thingfabric/device_status.c
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h
-device_status.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h
-device_status.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h
+device_status.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h
+device_status.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h
@@ -27,13 +27,13 @@ device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/netcfg.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/wlan_rx_filters.h
 device_status.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
-device_status.obj: C:/Users/Andrew/Downloads/thingfabric/thingfabric/device_status.h
+device_status.obj: C:/thingfabric/device_status.h
 
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/device_status.c: 
+C:/thingfabric/device_status.c: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h: 
 C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h: 
@@ -56,4 +56,4 @@ C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/netcfg.h:
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/wlan_rx_filters.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h: 
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/device_status.h: 
+C:/thingfabric/device_status.h: 

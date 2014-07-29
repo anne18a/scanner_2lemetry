@@ -1,10 +1,10 @@
 # FIXED
 
-smartconfig.obj: C:/Users/Andrew/Downloads/thingfabric/thingfabric/smartconfig.c
+smartconfig.obj: C:/thingfabric/smartconfig.c
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h
-smartconfig.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h
-smartconfig.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h
+smartconfig.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h
+smartconfig.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h
@@ -29,11 +29,11 @@ smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/wlan_rx_filters.h
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
 smartconfig.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Source/protocol.h
 
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/smartconfig.c: 
+C:/thingfabric/smartconfig.c: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h: 
 C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h: 

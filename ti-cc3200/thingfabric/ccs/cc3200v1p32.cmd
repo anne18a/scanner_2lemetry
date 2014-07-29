@@ -62,7 +62,7 @@ MEMORY
 //    SRAM_CODE (RWX) : origin = 0x20004000, length = 0x12FFF
 //    SRAM_DATA (RWX) : origin = 0x20017000, length = 0x19000
 
-    SRAM_CODE (RWX) : origin = 0x20004000, length = 0x19000
+    SRAM_CODE (RWX) : origin = 0x20004000, length = 0x18FFF
     SRAM_DATA (RWX) : origin = 0x2001D000, length = 0x13000
 }
 

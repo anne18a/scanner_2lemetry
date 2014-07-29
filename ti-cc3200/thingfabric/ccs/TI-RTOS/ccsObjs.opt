@@ -1,1 +1,1 @@
-"./uart_if.obj" "./tmp006drv.obj" "./smartconfig.obj" "./pinmux.obj" "./mqtt.obj" "./main.obj" "./i2c_if.obj" "./gpio_if.obj" "./device_status.obj" "./bma222drv.obj" "../cc3200v1p32.cmd" -l"libc.a" -ldriverlib.a -lsimplelink.a -lti_rtos.a 
+"./bma222drv.obj" "./device_status.obj" "./gpio_if.obj" "./i2c_if.obj" "./main.obj" "./mqtt.obj" "./pinmux.obj" "./smartconfig.obj" "./tmp006drv.obj" "./uart_if.obj" "../cc3200v1p32.cmd" -l"libc.a" -ldriverlib.a -lsimplelink.a -lti_rtos.a 

@@ -7,15 +7,15 @@ CMD_SRCS += \
 ../cc3200v1p32.cmd 
 
 C_SRCS += \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/bma222drv.c \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/device_status.c \
+C:/thingfabric/bma222drv.c \
+C:/thingfabric/device_status.c \
 C:/ti/CC3200SDK/cc3200-sdk/example/common/gpio_if.c \
 C:/ti/CC3200SDK/cc3200-sdk/example/common/i2c_if.c \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/main.c \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/mqtt.c \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/pinmux.c \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/smartconfig.c \
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/tmp006drv.c \
+C:/thingfabric/main.c \
+C:/thingfabric/mqtt.c \
+C:/thingfabric/pinmux.c \
+C:/thingfabric/smartconfig.c \
+C:/thingfabric/tmp006drv.c \
 C:/ti/CC3200SDK/cc3200-sdk/example/common/uart_if.c 
 
 OBJS += \
@@ -67,15 +67,15 @@ OBJS__QUOTED += \
 "uart_if.obj" 
 
 C_SRCS__QUOTED += \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/bma222drv.c" \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/device_status.c" \
+"C:/thingfabric/bma222drv.c" \
+"C:/thingfabric/device_status.c" \
 "C:/ti/CC3200SDK/cc3200-sdk/example/common/gpio_if.c" \
 "C:/ti/CC3200SDK/cc3200-sdk/example/common/i2c_if.c" \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/main.c" \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/mqtt.c" \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/pinmux.c" \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/smartconfig.c" \
-"C:/Users/Andrew/Downloads/thingfabric/thingfabric/tmp006drv.c" \
+"C:/thingfabric/main.c" \
+"C:/thingfabric/mqtt.c" \
+"C:/thingfabric/pinmux.c" \
+"C:/thingfabric/smartconfig.c" \
+"C:/thingfabric/tmp006drv.c" \
 "C:/ti/CC3200SDK/cc3200-sdk/example/common/uart_if.c" 
 
 

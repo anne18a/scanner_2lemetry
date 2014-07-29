@@ -17,17 +17,22 @@
 // MD5 hash for your userid and password.
 // You can use http://www.md5hashgenerator.com/ as an example
 // Also, you should change the TWOLEMETRY_DOMAIN_STUFF to match
-// your domain for your account instead of com.ti. The "stuff"
-// name is set to CC3200, but you can set this to something different.
-// THING_PREFIX could also be change to your own name if you like.
-// The "thing" name starts with this prefix with the MAC address
-// appended to the end. You could simplify this name if you like.
+// the domain for your account instead of com.ti. The "stuff"
+// name is set to msp430, but you can set this to something different,
+// probably CC3200 makes more sense. The THING_PREFIX could also be
+// changed if you like. The "thing" name starts with this prefix
+// with your MAC address appended to the end.
 
-#define TWOLEMETRY_SERVER "q.thingfabric.com"
-#define TWOLEMETRY_USERID "<YOUR THINGFABRIC USERNAME>"
-#define TWOLEMETRY_PASSWORD "<YOUR (MD5-HASHED) THINGFABRIC TOKEN>"
-#define TWOLEMETRY_DOMAIN_STUFF "<YOUR DOMAIN>/cc3200/"
-#define THING_PREFIX	"MyName_"
+#define TWOLEMETRY_SERVER "q.m2m.io"
+#define TWOLEMETRY_USERID "1a02d796-fcea-4bbf-918f-62b42221d153"
+#define TWOLEMETRY_PASSWORD "77d9fee38a566722b32ed0c29b863155"
+#define TWOLEMETRY_DOMAIN_STUFF "10b27232eb7c6fd8770b7cac95400f52/cc3200/"
+
+//#define TWOLEMETRY_USERID "fd6nz1vkfj"
+//#define TWOLEMETRY_PASSWORD "d3f58bd7c275437348288a942d53fcea"
+//#define TWOLEMETRY_DOMAIN_STUFF "88bw6tj7/CC3200/"
+
+#define THING_PREFIX	"CC3200_"
 #define THING_PREFIX_SIZE	7
 
 #define OPEN_BRACKET		"{"
@@ -86,18 +91,24 @@ int CreateConnection()
 	sd = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
 	if( sd < 0 )
 	{
-		Report("Error creating socket\r\n\r\n");
+		Report("Error creating socket\r\n");
 		return sd;
 	}
-
+	else
+	{
+		Report("Socket created\r\n");
+	}
 	ret_val = sl_Connect(sd, ( SlSockAddr_t *)&Addr, AddrSize);
 	if( ret_val < 0 )
 	{
 		/* error */
-		Report("Error connecting to socket\r\n\r\n");
+		Report("Error connecting to socket\r\n");
 		return ret_val;
 	}
-
+	else
+	{
+		Report("Connected to socket: %i \r\n", sd);
+	}
 	return sd;
 }
 
@@ -110,10 +121,14 @@ int GetHostIP()
 			&appData.DestinationIP, SL_AF_INET);
 	if (status != 0)
 	{
-		Report("Unable to reach Host\r\n\r\n");
+		Report("Unable to reach Host\r\n");
 		return -1;
 	}
-
+	else
+	{
+		Report("Obtained IP address for host: %s \r\n",appData.HostName);
+		Report("IP address of host: %i \r\n",appData.DestinationIP);
+	}
 	return 0;
 }
 
@@ -138,8 +153,6 @@ void getMacAddress(void)
 	sl_NetCfgGet(SL_MAC_ADDRESS_GET,NULL,&MACAddressLen,(unsigned char *)MACAddress);
 
 	hexify(MACAddress, MACAddressHex, SL_MAC_ADDR_LEN*2);
-	//Report("MAC Address: ");
-	//Report(MACAddressHex);
 
 	memset(thingName, 0x00, sizeof(thingName));
 	p_bufLocation = thingName;
@@ -175,9 +188,9 @@ void json_pair_int(char * pair, const char *name, int8_t value)
 void publishSensorData(void)
 {
 	char * p_bufLocation = NULL;
-	char json_pair[40];
+	char json_pair[64];
 	char payload_data[512];
-	char pubTopic[50];
+	char pubTopic[128];
 
 	// Read the Accelerometer values
 	BMA222ReadNew(&Accel_X, &Accel_Y, &Accel_Z);
@@ -414,7 +427,7 @@ int mqtt_publish(mqtt_broker_handle_t* broker, const char* topic, const char* ms
 void connect2mqqtbroker(void)
 {
 	// MQTT connection options
-	appData.broker.alive = 300; // 300 seconds = 5 minutes
+	appData.broker.alive = 600; // 600 seconds = 10 minutes
 	appData.broker.seq = 1; // Sequence for message indetifiers
 
 	// MQTT client options
@@ -452,43 +465,36 @@ void connect2mqqtbroker(void)
 void mqttTask(void *pvParameters)
 {
 extern OsiSyncObj_t semaphore_Connected;
-OsiTime_t timeout=30000;
 
+OsiTime_t timeout=120000;
+
+	Report("mqttTask waiting for internet access\r\n");
 	if (osi_SyncObjWait(&semaphore_Connected, timeout) != OSI_OK )
 	{
 		Report("mqttTask timed out waiting for internet access\r\n");
+		Report("mqttTask terminating\r\n");
 		return;
 	}
 
-	/* Display banner */
-	Report("\r\n\r\nTexas Instruments CC3200 Application\r\n");
-	Report("Powered by 2lemetry's ThingFabric Cloud\r\n\r\n");
-	Report("Ready to sample and publish 64 sets of sensor data to 2lemetry server\r\n");
-	Report("Move the CC3200 LaunchPad in three dimensions to change Accelerometer values\r\n");
-	Report("To see your sample data in a web browser, go to http://ti-act.2lemetry.com/\r\n");
-
-	// Initialize the GPIO ports for SW2 and SW3 push buttons - no this is done in button_if.c
-	//	GPIODirModeSet(GPIOA1_BASE, GPIO_PIN5, GPIO_DIR_MODE_IN); //S3 is GPIO_13
-	//	GPIODirModeSet(GPIOA2_BASE, GPIO_PIN6, GPIO_DIR_MODE_IN); // S2 is GPIO_22
-
-	// Need to wait for OOBTask to obtain an internet connection before proceeding
-	// If started in AP mode, it will never connect
-	// If started in STA mode, need to wait for connection, possibly smartconfig
-
-
-
-	getMacAddress(); //this is done for pubTopic, unique ID for the device
+	getMacAddress(); //this is done for pubTopic, to get unique ID for the device
 
 	connect2mqqtbroker();
 
+	Report("\r\n...Ready to sample sensor data to 2lemetry server\r\n");
+	Report("...Move the CC3200 LaunchPad around to change Accelerometer values\r\n");
+	Report("...To see your sample data in a web browser, go to http://ti-act.2lemetry.com/\r\n\r\n");
+
 	while(1)
 	{
-
 		osi_Sleep(100);
 		GPIO_IF_LedOn(MCU_RED_LED_GPIO);
+
 		publishSensorData(); //publish accellerometer and temperature values
+
+// need to add "listen" to messages from the mqtt broker here (subscribe)
+// if the message contains "Stop, stop, Halt, halt, Pause, pause" stop publishing data
+// if the message contains "Start, start, Resume, resume, Send, send" start publishing data
 		osi_Sleep(400);
 		GPIO_IF_LedOff(MCU_RED_LED_GPIO);
-
 	}
 }

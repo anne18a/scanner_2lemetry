@@ -1,14 +1,14 @@
 # FIXED
 
 mqtt.obj: C:/thingfabric/mqtt.c
-mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdio.h
-mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h
-mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdarg.h
+mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdio.h
+mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h
+mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdarg.h
 mqtt.obj: C:/thingfabric/mqtt.h
-mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdint.h
+mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdint.h
 mqtt.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h
 mqtt.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h
-mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h
+mqtt.obj: c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h
 mqtt.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h
 mqtt.obj: C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h
 mqtt.obj: C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h
@@ -37,14 +37,14 @@ mqtt.obj: C:/thingfabric/bma222drv.h
 mqtt.obj: C:/thingfabric/tmp006drv.h
 
 C:/thingfabric/mqtt.c: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdio.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/linkage.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdarg.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdio.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/linkage.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdarg.h: 
 C:/thingfabric/mqtt.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/stdint.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/stdint.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/simplelink.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../user.h: 
-c:/ti/ccsv6/tools/compiler/arm_5.1.5/include/string.h: 
+c:/ti/ccsv6/tools/compiler/arm_5.1.7/include/string.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../cc_pal.h: 
 C:/ti/CC3200SDK/cc3200-sdk/oslib/osi.h: 
 C:/ti/CC3200SDK/cc3200-sdk/simplelink/Include/../source/spawn.h: 

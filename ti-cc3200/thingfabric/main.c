@@ -71,6 +71,7 @@
 #define OOB_TASK_PRIORITY				(1)
 #define SPAWN_TASK_PRIORITY				(9)
 #define OSI_STACK_SIZE					(2048)
+//#define OSI_STACK_SIZE					(2800)
 #define SSID_NAME               		"cc3200demo"
 #define AP_SSID_LEN_MAX         		(32)
 
@@ -566,7 +567,7 @@ void ConnectToNetwork()
     unsigned char macAddressVal[SL_MAC_ADDR_LEN];
     unsigned char macAddressLen = SL_MAC_ADDR_LEN;
     sl_NetCfgGet(SL_MAC_ADDRESS_GET,NULL,&macAddressLen,(unsigned char *)macAddressVal);
-    Report("MAC Address: %.2x:%.2x:%.2x:%.2x:%.2x:%.2x\n\r", macAddressVal[0],macAddressVal[1],macAddressVal[2],macAddressVal[3],macAddressVal[4],macAddressVal[5]);
+    Report("CC3200 LaunchPad MAC Address: %.2x:%.2x:%.2x:%.2x:%.2x:%.2x\n\r", macAddressVal[0],macAddressVal[1],macAddressVal[2],macAddressVal[3],macAddressVal[4],macAddressVal[5]);
 
     // Device is in AP Mode and Force AP Jumper is not Connected
     if(((g_uiSimplelinkRole == ROLE_AP) || (g_uiSimplelinkRole == ROLE_P2P)) && g_uiDeviceModeConfig == ROLE_STA )
@@ -710,7 +711,8 @@ static void ReadDeviceConfiguration()
 //****************************************************************************
 static void OOBTask(void *pvParameters)
 {
-    //Read Device Mode Configuration
+
+	//Read Device Mode Configuration
     ReadDeviceConfiguration();
 
     //Connect to Network
@@ -780,9 +782,12 @@ BoardInit(void)
 //****************************************************************************
 void main()
 {
-    BoardInit();
+	/* Display banner */
+	Report("\r\n\r\nTexas Instruments CC3200 Application - Powered by 2lemetry's ThingFabric Cloud\r\n\r\n");
+
+	BoardInit();
     
-     //
+    //
     // Configure the pinmux settings for the peripherals exercised
     //
     PinMuxConfig();
@@ -827,12 +832,14 @@ void main()
     //
     // Create OOB Task
     //
-    osi_TaskCreate(OOBTask, (signed char*)"OOBTask",OSI_STACK_SIZE, NULL, OOB_TASK_PRIORITY, NULL );
+	Report("Starting OOBTask\r\n");
+    osi_TaskCreate(OOBTask, (signed char*)"OOBTask", OSI_STACK_SIZE, NULL, OOB_TASK_PRIORITY, NULL );
 
     //
     // Create mqtt Task
     //
-    osi_TaskCreate(mqttTask, (signed char*)"mqttTask",OSI_STACK_SIZE, NULL, OOB_TASK_PRIORITY, NULL );
+	Report("Starting mqttTask\r\n");
+    osi_TaskCreate(mqttTask, (signed char*)"mqttTask", OSI_STACK_SIZE, NULL, OOB_TASK_PRIORITY, NULL );
 
     //
     // Start OS Scheduler

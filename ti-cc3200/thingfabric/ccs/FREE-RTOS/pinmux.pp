@@ -1,7 +1,7 @@
 # FIXED
 
-pinmux.obj: C:/Users/Andrew/Downloads/thingfabric/thingfabric/pinmux.c
-pinmux.obj: C:/Users/Andrew/Downloads/thingfabric/thingfabric/pinmux.h
+pinmux.obj: C:/thingfabric/pinmux.c
+pinmux.obj: C:/thingfabric/pinmux.h
 pinmux.obj: C:/ti/CC3200SDK/cc3200-sdk/inc/hw_types.h
 pinmux.obj: C:/ti/CC3200SDK/cc3200-sdk/inc/hw_memmap.h
 pinmux.obj: C:/ti/CC3200SDK/cc3200-sdk/inc/hw_gpio.h
@@ -12,8 +12,8 @@ pinmux.obj: C:/ti/CC3200SDK/cc3200-sdk/driverlib/rom_patch.h
 pinmux.obj: C:/ti/CC3200SDK/cc3200-sdk/driverlib/gpio.h
 pinmux.obj: C:/ti/CC3200SDK/cc3200-sdk/driverlib/prcm.h
 
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/pinmux.c: 
-C:/Users/Andrew/Downloads/thingfabric/thingfabric/pinmux.h: 
+C:/thingfabric/pinmux.c: 
+C:/thingfabric/pinmux.h: 
 C:/ti/CC3200SDK/cc3200-sdk/inc/hw_types.h: 
 C:/ti/CC3200SDK/cc3200-sdk/inc/hw_memmap.h: 
 C:/ti/CC3200SDK/cc3200-sdk/inc/hw_gpio.h: 
