@@ -5,7 +5,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.Stellaris In-Circuit Debug Interface_0/Cortex_M4_0" value="${build_artifact:thingfabric}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.Stellaris In-Circuit Debug Interface_0/Cortex_M4_0" value="thingfabric"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:thingfabric}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Stellaris In-Circuit Debug Interface_0/Cortex_M4_0" value="C:/thingfabric\ccs\FREE-RTOS\thingfabric.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Stellaris In-Circuit Debug Interface_0/Cortex_M4_0" value="C:/thingfabric\ccs\TI-RTOS\thingfabric.out"/>
 <mapAttribute key="com.ti.ccstudio.debug.ui.displayFormats">
 <mapEntry key="Stellaris In-Circuit Debug Interface_0/Cortex_M4_0@##separator##@0" value="32-Bit Hex - TI Style"/>
 </mapAttribute>

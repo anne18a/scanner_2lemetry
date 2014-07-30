@@ -71,7 +71,6 @@
 #define OOB_TASK_PRIORITY				(1)
 #define SPAWN_TASK_PRIORITY				(9)
 #define OSI_STACK_SIZE					(2048)
-//#define OSI_STACK_SIZE					(2800)
 #define SSID_NAME               		"cc3200demo"
 #define AP_SSID_LEN_MAX         		(32)
 

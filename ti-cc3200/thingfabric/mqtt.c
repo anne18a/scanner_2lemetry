@@ -2,9 +2,7 @@
 
 #include <stdio.h>
 #include "mqtt.h"
-//#include <string.h>
 #include "simplelink.h"
-//#include "netcfg.h"
 #include "uart_if.h"
 #include "gpio_if.h"
 #include "bma222drv.h"
@@ -13,9 +11,10 @@
 // These are the defines for the 2lemetry mqtt broker
 // The default USERID and PASSWORD is for the "TI account"
 // To connect to your own account, you will need to modify
-// the TWOLEMETRY_USERID, TWOLEMETRY_PASSWORD with your unique
-// MD5 hash for your userid and password.
-// You can use http://www.md5hashgenerator.com/ as an example
+// the TWOLEMETRY_USERID and TWOLEMETRY_PASSWORD.
+// The PASSWORD must be the MD5 hash
+// You can use http://www.md5hashgenerator.com/ to generate
+// the MD5 hash for your password.
 // Also, you should change the TWOLEMETRY_DOMAIN_STUFF to match
 // the domain for your account instead of com.ti. The "stuff"
 // name is set to msp430, but you can set this to something different,
@@ -24,13 +23,14 @@
 // with your MAC address appended to the end.
 
 #define TWOLEMETRY_SERVER "q.m2m.io"
-#define TWOLEMETRY_USERID "1a02d796-fcea-4bbf-918f-62b42221d153"
-#define TWOLEMETRY_PASSWORD "77d9fee38a566722b32ed0c29b863155"
-#define TWOLEMETRY_DOMAIN_STUFF "10b27232eb7c6fd8770b7cac95400f52/cc3200/"
+#define TWOLEMETRY_USERID "demo@ti.com"
+#define TWOLEMETRY_PASSWORD "4c7a34d25eff9121c49658dbceadf694"
+#define TWOLEMETRY_DOMAIN_STUFF "com.ti/msp430/"
 
-//#define TWOLEMETRY_USERID "fd6nz1vkfj"
-//#define TWOLEMETRY_PASSWORD "d3f58bd7c275437348288a942d53fcea"
-//#define TWOLEMETRY_DOMAIN_STUFF "88bw6tj7/CC3200/"
+// These are some samples used to log into Jason's account and project
+//#define TWOLEMETRY_USERID "1a02d796-fcea-4bbf-918f-62b42221d153"
+//#define TWOLEMETRY_PASSWORD "77d9fee38a566722b32ed0c29b863155"
+//#define TWOLEMETRY_DOMAIN_STUFF "10b27232eb7c6fd8770b7cac95400f52/cc3200/"
 
 #define THING_PREFIX	"CC3200_"
 #define THING_PREFIX_SIZE	7

@@ -61,7 +61,7 @@
 */
 void SmartConfigConnect()
 {
-	const unsigned char publickey[16] = "aaaabbbbccccdddd";
+//	const unsigned char publickey[16] = "aaaabbbbccccdddd";
 	unsigned char policyVal;
 
 	//set AUTO policy
@@ -73,22 +73,22 @@ void SmartConfigConnect()
 	/* Start SmartConfig
 	* This example uses the unsecured SmartConfig method
 	*/
-//	sl_WlanSmartConfigStart(0,                            //groupIdBitmask
-//	                       SMART_CONFIG_CIPHER_NONE,    //cipher
-//	                       0,                           //publicKeyLen
-//	                       0,                           //group1KeyLen
-//	                       0,                           //group2KeyLen
-//	                       NULL,                          //publicKey
-//	                       NULL,                          //group1Key
-//	                       NULL);                         //group2Key
-    sl_WlanSmartConfigStart(1,                            //groupIdBitmask
-	                        1,						     //cipher
-	                        16,                          //publicKeyLen
-	                        0,                           //group1KeyLen
-	                        0,                           //group2KeyLen
-	                        publickey,                     //publicKey
-	                        NULL,                          //group1Key
-	                        NULL);                         //group2Key
+	sl_WlanSmartConfigStart(0,                            //groupIdBitmask
+	                       SMART_CONFIG_CIPHER_NONE,    //cipher
+	                       0,                           //publicKeyLen
+	                       0,                           //group1KeyLen
+	                       0,                           //group2KeyLen
+	                       NULL,                          //publicKey
+	                       NULL,                          //group1Key
+	                       NULL);                         //group2Key
+//    sl_WlanSmartConfigStart(1,                            //groupIdBitmask
+//	                        1,						     //cipher
+//	                        16,                          //publicKeyLen
+//	                        0,                           //group1KeyLen
+//	                        0,                           //group2KeyLen
+//	                        publickey,                     //publicKey
+//	                        NULL,                          //group1Key
+//	                        NULL);                         //group2Key
 }
 
 /*!
