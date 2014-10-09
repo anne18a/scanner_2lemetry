@@ -1,0 +1,1 @@
+If you're unfamiliar with how to connect to ThingFabric from the TI TM4C129X, please read our Quick Start [here](https://2lemetry.atlassian.net/wiki/display/KB/Connecting+to+ThingFabric+in+TI+TM4C129X)
