@@ -3,7 +3,7 @@ quickstart-samples
 
 Examples showing how to connect, subscribe, and publish to m2m.io in common languages and on common platforms.  Links to detailed Quick Starts are available in each directory.
 
-Copyright © 2014 2lemetry, LLC
+Copyright © 2014 2lemetry
 
 All rights reserved. 
 
