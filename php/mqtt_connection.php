@@ -13,7 +13,7 @@ $_PAYLOAD = '{"Hello":"World!"}';
 $_QOS = 0;
 
 // Using the PHP Mosquitto extension (https://github.com/mgdm/Mosquitto-PHP).
-$client = new Mosquitto\Client();
+$client = new Mosquitto\Client("php-mqtt");
 
 // Bind callbacks
 $client->onConnect('on_connect');

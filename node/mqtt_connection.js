@@ -19,6 +19,7 @@ var options = {
 	username: USERNAME, 
 	password: TOKEN_HASH,
 	keepalive: 30,
+	clientId: "nodejs-mqtt"
 	// useSSL: true		// Set useSSL to true if you're licensed for SSL
 }
 

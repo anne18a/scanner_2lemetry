@@ -16,6 +16,7 @@ PAYLOAD = '{"Hello":"World!"}'
 
 # Connect to q.thingfabric.com using the following parameters.
 MQTT::Client.connect(
+	:client_id => "ruby-mqtt",
 	:remote_host => HOST,
 	:remote_port => PORT,
 	:username => USERNAME,

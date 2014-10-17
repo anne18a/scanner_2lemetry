@@ -69,7 +69,7 @@ def test_subscribe():
     print("Subscribing to " + TOPIC)
     client.subscribe(TOPIC, QOS)
 
-client = mqtt.Client()
+client = mqtt.Client("beaglebone-mqtt")
 
 # Bind callbacks to the relevant functions.
 client.on_connect = on_connect
